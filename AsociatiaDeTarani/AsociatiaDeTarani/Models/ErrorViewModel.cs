@@ -1,6 +1,6 @@
 using System;
 
-namespace TaraniShop.Models
+namespace AsociatiaDeTarani.Models
 {
     public class ErrorViewModel
     {

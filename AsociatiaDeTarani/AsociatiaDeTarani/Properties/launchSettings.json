@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:49853",
-      "sslPort": 44374
+      "applicationUrl": "http://localhost:4428",
+      "sslPort": 44305
     }
   },
   "profiles": {
@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "TaraniShop": {
+    "AsociatiaDeTarani": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

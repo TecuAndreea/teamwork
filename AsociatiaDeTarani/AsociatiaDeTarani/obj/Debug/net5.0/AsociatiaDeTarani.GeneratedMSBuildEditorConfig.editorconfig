@@ -6,5 +6,5 @@ build_property.ProjectTypeGuids =
 build_property.PublishSingleFile = 
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
-build_property.RootNamespace = TaraniShop
-build_property.ProjectDir = C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\TaraniShop\TaraniShop\
+build_property.RootNamespace = AsociatiaDeTarani
+build_property.ProjectDir = C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\

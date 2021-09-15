@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AsociatiaDeTarani.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using TaraniShop.Models;
 
-namespace TaraniShop.Controllers
+namespace AsociatiaDeTarani.Controllers
 {
     public class HomeController : Controller
     {
