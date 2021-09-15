@@ -1,0 +1,22 @@
+﻿
+@{
+
+    Layout = "_ClientLayout";
+    @model ProductsListViewModel
+}
+
+
+<p>aceasta esta pagina clientului</p>
+<div class="card-columns">
+    @foreach (var product in Model.Products)
+    { 
+        <div class="card">
+            <img class="card-img" src="@product.PhotoUrl">
+
+            </img>
+            <div class="card-body">
+                <h5 class="card-title">@product.Name</h5>
+            </div>
+        </div>
+    }
+</div>

@@ -1,4 +1,5 @@
 using AsociatiaDeTarani.Models;
+using AsociatiaDeTarani.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,8 +30,17 @@ namespace AsociatiaDeTarani
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
+            services.AddScoped<IGenericRepository<Producer>, GenericRepository<Producer>>();
+            services.AddScoped<IGenericRepository<Client>, GenericRepository<Client>>();
+            services.AddScoped<IGenericRepository<Order>, GenericRepository<Order>>();
+            services.AddScoped<IGenericRepository<OrderProduct>, GenericRepository<OrderProduct>>();
+
+            services.AddHttpContextAccessor();
+            services.AddSession();
 
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,12 +62,14 @@ namespace AsociatiaDeTarani
             app.UseRouting();
 
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
