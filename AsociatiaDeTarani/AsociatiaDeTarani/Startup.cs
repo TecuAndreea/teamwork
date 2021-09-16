@@ -62,7 +62,6 @@ namespace AsociatiaDeTarani
             app.UseRouting();
 
             app.UseAuthorization();
-            
 
             app.UseEndpoints(endpoints =>
             {
@@ -71,6 +70,8 @@ namespace AsociatiaDeTarani
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            
         }
     }
 }

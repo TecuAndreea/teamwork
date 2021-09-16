@@ -46,7 +46,7 @@ namespace AsociatiaDeTarani.Models
                 Name = "Rosii Bio",
                 ProducerId = 1,
                 Price=6,
-                PhotoUrl="~/Images/IonescuMihai/RosiiBio.jpg",
+                PhotoUrl="/Images/IonescuMihai/RosiiBio.jpg",
                 Weight=1,
                 AvailableStock=100            
 
@@ -57,7 +57,7 @@ namespace AsociatiaDeTarani.Models
                 Name = "Castraveti Bio",
                 ProducerId = 1,
                 Price = 3,
-                PhotoUrl = "~/Images/IonescuMihai/CastravetiBio.jpg",
+                PhotoUrl = "/Images/IonescuMihai/CastravetiBio.jpg",
                 Weight = 1,
                 AvailableStock = 80
 
@@ -68,7 +68,7 @@ namespace AsociatiaDeTarani.Models
                 Name = "Varza Bio",
                 ProducerId = 2,
                 Price = 50,
-                PhotoUrl = "~/Images/PetreVasile/VarzaBio.jpg",
+                PhotoUrl = "/Images/PetreVasile/VarzaBio.jpg",
                 Weight = 10,
                 AvailableStock = 200
 

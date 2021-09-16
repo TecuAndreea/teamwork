@@ -1,6 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<a class="btn" asp-area="" asp-controller="Client" asp-action="Index">Client</a>
-<a class="btn" asp-area="" asp-controller="Producer" asp-action="Index">Producer</a>
 
+<div class="row align-items-center justify-content-center">
+    <div class="centereddiv">
+        <a class="btn btn-secondary active" asp-area="" asp-controller="Client" asp-action="Index"><h4>Client</h4></a>
+        <a class="btn btn-secondary active" asp-area="" asp-controller="Producer" asp-action="Index"><h4>Producer</h4></a>
+    </div>
+</div>

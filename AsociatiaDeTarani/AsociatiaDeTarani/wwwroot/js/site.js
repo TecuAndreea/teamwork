@@ -2,3 +2,96 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+$("#jsGrid2").jsGrid({
+    width: "100%",
+    height: "auto",
+
+    heading: true,
+    autoload: true,
+    inserting: true,
+    sorting: true,
+    selecting: true,
+    paging: true,
+    autosearch: true,
+    pageLoading: false,
+    pageSize: 5,
+    pageButtonCount: 5,
+    pageIndex: 1,
+
+    deleteConfirm: "Are you sure you want to delete the item?",
+
+    controller: {
+        loadData: function (filter) {
+            return $.ajax({
+                type: "GET",
+                url: "/producers",
+                data: filter,
+                dataType: "json"
+            });
+        },
+
+        insertItem: function (insertingItem) {
+            return $.ajax({
+                type: "POST",
+                url: "/producers",
+                data: insertingItem
+            });
+        }
+
+    },
+
+    fields: [
+        {
+            name: "producerId",
+            width: 50,
+            title: "ProducerId",
+            sorting: false,
+            filtering: false,
+            itemTemplate: function (value, item) {
+                return "<div style='color:blue'>" + value + "</div>"
+            }
+        },
+        {
+            name: "name",
+            width: 50,
+            title: "Name",
+            type: "text",
+            itemTemplate: function (value, item) {
+                return "<div>" + value + "</div>"
+            }
+        },
+        {
+            name: "phoneNumber",
+            width: 50,
+            title: "Phone",
+            type: "text",
+            itemTemplate: function (value, item) {
+                return "<div>" + value + "</div>"
+            }
+        },
+
+        {
+            name: "deliveryCost",
+            width: 50,
+            title: "Delivery Cost",
+            type: "number",
+            itemTemplate: function (value, item) {
+                return "<div>" + value + "</div>"
+            }
+        },
+
+        {
+            name: "minimumOrder",
+            width: 50,
+            title: "Minimum Order",
+            type: "number",
+            itemTemplate: function (value, item) {
+                return "<div>" + value + "</div>"
+            }
+        },
+
+        {
+            type: "control"
+        }
+    ]
+});

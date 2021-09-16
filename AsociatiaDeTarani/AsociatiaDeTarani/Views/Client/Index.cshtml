@@ -11,9 +11,7 @@
     @foreach (var product in Model.Products)
     { 
         <div class="card">
-            <img class="card-img" src="@product.PhotoUrl">
-
-            </img>
+            <img class="card-img" src="@Url.Content(product.PhotoUrl)"/>
             <div class="card-body">
                 <h5 class="card-title">@product.Name</h5>
             </div>
