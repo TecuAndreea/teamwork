@@ -24,7 +24,7 @@ namespace AsociatiaDeTarani.Controllers
 
         [HttpGet]
         [Route("/products/{id}")]
-        public IEnumerable<Product> GetAllProducts([FromRoute] int id)
+        public IEnumerable<Product> GetAllProducts([FromRoute]int id)
         {
             return _productRepository.GetByCondition(p => p.ProducerId == id);
         }

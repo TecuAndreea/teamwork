@@ -21,12 +21,14 @@ $("#productJsGrid").jsGrid({
 
     deleteConfirm: "Are you sure you want to delete the item?",
 
+
     controller: {
         loadData: function (filter) {
+            var id = $('#select option:selected').val();
             return $.ajax({
                 type: "GET",
-                url: "/products/2",
-                data: filter,
+                url: "/products/"+sessionStorage.getItem("prod"),
+                data: id,
                 dataType: "json"
             });
         },
@@ -90,9 +92,11 @@ $("#productJsGrid").jsGrid({
                 return "<div>" + value + "</div>"
             }
         },
+        
 
         {
             type: "control"
         }
     ]
+   
 });

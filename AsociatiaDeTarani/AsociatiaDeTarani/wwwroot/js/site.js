@@ -2,6 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
 $("#jsGrid2").jsGrid({
     width: "100%",
     height: "auto",
@@ -19,6 +20,20 @@ $("#jsGrid2").jsGrid({
     pageIndex: 1,
 
     deleteConfirm: "Are you sure you want to delete the item?",
+
+    rowClick: function (args) {
+        console.log(args)
+        var getData = args.item;     
+        var text = [];
+        text.push(getData["producerId"])
+        sessionStorage.setItem("prod", text);
+
+            
+
+       
+
+        $("#label").text("Ati selectat producatorul cu numele:" + getData["name"])
+    },
 
     controller: {
         loadData: function (filter) {
@@ -44,7 +59,7 @@ $("#jsGrid2").jsGrid({
         {
             name: "producerId",
             width: 50,
-            title: "ProducerId",
+            title: "Id Producator",
             sorting: false,
             filtering: false,
             itemTemplate: function (value, item) {
@@ -54,7 +69,7 @@ $("#jsGrid2").jsGrid({
         {
             name: "name",
             width: 50,
-            title: "Name",
+            title: "Nume",
             type: "text",
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
@@ -63,7 +78,7 @@ $("#jsGrid2").jsGrid({
         {
             name: "phoneNumber",
             width: 50,
-            title: "Phone",
+            title: "Numar telefon",
             type: "text",
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
@@ -73,7 +88,7 @@ $("#jsGrid2").jsGrid({
         {
             name: "deliveryCost",
             width: 50,
-            title: "Delivery Cost",
+            title: "Cost livrare",
             type: "number",
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
@@ -83,15 +98,18 @@ $("#jsGrid2").jsGrid({
         {
             name: "minimumOrder",
             width: 50,
-            title: "Minimum Order",
+            title: "Comanda minima",
             type: "number",
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
             }
         },
+       
 
         {
             type: "control"
         }
+
+        
     ]
 });

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace AsociatiaDeTarani.ViewModels
 {
-    public class ProductsListViewModel
+    public class ProducersListViewModel
     {
-        public IEnumerable<Product> Products { get; set; }
+        public IEnumerable<Producer> Producers { get; set; }
     }
-
 }

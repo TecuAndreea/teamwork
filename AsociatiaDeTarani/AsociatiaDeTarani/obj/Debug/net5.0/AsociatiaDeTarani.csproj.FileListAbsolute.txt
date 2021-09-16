@@ -230,3 +230,7 @@ C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTaran
 C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\ref\AsociatiaDeTarani.dll
 C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\AsociatiaDeTarani.pdb
 C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\AsociatiaDeTarani.genruntimeconfig.cache
+F:\VS C# Munca\WEB\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderForm.cshtml.g.cs
+F:\VS C# Munca\WEB\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderHistory.cshtml.g.cs
+F:\VS C# Munca\WEB\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\ShoppingCart.cshtml.g.cs
+F:\VS C# Munca\WEB\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Product\Index.cshtml.g.cs
