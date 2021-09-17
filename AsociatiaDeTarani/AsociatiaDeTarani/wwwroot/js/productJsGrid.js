@@ -25,11 +25,6 @@ $("#productJsGrid").jsGrid({
     controller: {
         loadData: function (filter) {
 
-            $("<button>").attr({ class: "customGridDeletebutton jsgrid-button jsgrid-delete-button" })
-                .click(function (e) {
-                    alert("Title: ");
-                    e.stopPropagation();
-                });
 
             return $.ajax({
                 type: "GET",
@@ -115,7 +110,7 @@ $("#productJsGrid").jsGrid({
             name: "photoUrl",
             width: 50,
             title: "Poza Produs",
-            type: "text",
+            editing:false,
             itemTemplate: function (value, item) {
                 var $photo = $("<div>").append($("<img width='100%' height='auto'>").attr("src", ".." + value.substring(1)));
                 return $("<tr>").append($("<td>").append($photo));
@@ -126,6 +121,7 @@ $("#productJsGrid").jsGrid({
 
                 var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
                 var $myButton = $("<input type='file' id='myFile' name='filename' accept='image/*'>Imagine</input>");
+                this.photoUrl = "1";
                 return $result.add($myButton);
             }
         },

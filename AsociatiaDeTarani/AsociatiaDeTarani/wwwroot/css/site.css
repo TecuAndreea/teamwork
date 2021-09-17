@@ -87,3 +87,13 @@ body {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
+#logo
+{
+    width:4em;
+    height:3em;
+}
+
+.nav-link {
+    border-left: 1px solid #000000
+}

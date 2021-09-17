@@ -29,7 +29,7 @@ $("#jsGrid2").jsGrid({
         sessionStorage.setItem("prod", text);
         $("#adaugareProdus").show();
 
-        $("#label").text("Ati selectat producatorul cu numele:" + getData["name"])
+        $("#label").text("Salut, " + getData["name"] + ' iti poti adauga alte produse la sectiunea "Adaugare produse".').css('font-weight','bold');
 
     },
 
