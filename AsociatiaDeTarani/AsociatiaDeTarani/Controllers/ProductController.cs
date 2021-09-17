@@ -30,9 +30,10 @@ namespace AsociatiaDeTarani.Controllers
         }
 
         [HttpPost]
-        [Route("/products")]
-        public void InsertProduct(Product product)
+        [Route("/products/{id}")]
+        public void InsertProduct([FromRoute]int id,Product product)
         {
+            product.ProducerId=id;
             _productRepository.Insert(product);
         }
 

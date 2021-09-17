@@ -27,12 +27,10 @@ $("#jsGrid2").jsGrid({
         var text = [];
         text.push(getData["producerId"])
         sessionStorage.setItem("prod", text);
-
-            
-
-       
+        $("#adaugareProdus").show();
 
         $("#label").text("Ati selectat producatorul cu numele:" + getData["name"])
+
     },
 
     controller: {

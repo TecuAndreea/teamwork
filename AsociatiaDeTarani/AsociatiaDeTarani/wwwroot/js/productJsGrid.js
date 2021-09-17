@@ -24,12 +24,20 @@ $("#productJsGrid").jsGrid({
 
     controller: {
         loadData: function (filter) {
-            var id = $('#select option:selected').val();
+
+            $("<button>").attr({ class: "customGridDeletebutton jsgrid-button jsgrid-delete-button" })
+                .click(function (e) {
+                    alert("Title: ");
+                    e.stopPropagation();
+                });
+
             return $.ajax({
                 type: "GET",
-                url: "/products/"+sessionStorage.getItem("prod"),
-                data: id,
+                url: "/products/" + sessionStorage.getItem("prod"),
+                data: filter,
                 dataType: "json"
+
+
             });
         },
 
@@ -38,6 +46,14 @@ $("#productJsGrid").jsGrid({
                 type: "PUT",
                 url: "/products",
                 data: updatingItem
+            });
+        },
+
+        insertItem: function (insertingItem) {
+            return $.ajax({
+                type: "POST",
+                url: "/products/" + sessionStorage.getItem("prod"),
+                data: insertingItem
             });
         }
 
@@ -92,11 +108,32 @@ $("#productJsGrid").jsGrid({
                 return "<div>" + value + "</div>"
             }
         },
-        
+
+        {
+
+
+            name: "photoUrl",
+            width: 50,
+            title: "Poza Produs",
+            type: "text",
+            itemTemplate: function (value, item) {
+                var $photo = $("<div>").append($("<img width='100%' height='auto'>").attr("src", ".." + value.substring(1)));
+                return $("<tr>").append($("<td>").append($photo));
+
+            },
+
+            insertTemplate: function () {
+
+                var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
+                var $myButton = $("<input type='file' id='myFile' name='filename' accept='image/*'>Imagine</input>");
+                return $result.add($myButton);
+            }
+        },
+
 
         {
             type: "control"
         }
     ]
-   
+
 });
