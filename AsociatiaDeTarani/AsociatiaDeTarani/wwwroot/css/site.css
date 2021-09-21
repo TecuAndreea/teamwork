@@ -99,3 +99,29 @@ body {
 .nav-link {
     border-left: 1px solid #000000
 }
+
+fieldset.section-border {
+    border: 5px groove mediumturquoise;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+
+legend.section-border {
+    width: inherit;
+    padding: 0.3em;
+    border-bottom: none;
+}
+
+
+
+.section-title {
+    border: 2px;
+    border-style: dotted;
+    border-radius: 40%;
+    padding: 0.2em;
+    border-color: teal;
+    font-style: italic;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: mediumturquoise
+}
