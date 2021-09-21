@@ -5,8 +5,20 @@
     heading: true,
     autoload: true,
     autosearch: true,
+    editing: true,
+    invalidNotify: function (args) {
+        $('#alert-error-not-submit').removeClass('hidden');
+    },
 
-    deleteConfirm: "Confirmare stergere produs din cos",
+    deleteConfirm: "Sigur stergeti toate produsele de acest fel din cos?",
+
+    rowClick: function (args) {
+        console.log(args)
+        var getData = args.item;
+        var text = [];
+        text.push(getData["product"])
+        sessionStorage.setItem("shoppingItemProduct", text);
+    },
 
     controller: {
         loadData: function (filter) {
@@ -16,7 +28,23 @@
                 data: filter,
                 dataType: "json"
             });
-        }
+        },
+
+        updateItem: function (updatingItem) {
+            return $.ajax({
+                type: "PUT",
+                url: "/shoppingCartItems",
+                data: updatingItem
+            });
+        },
+
+        deleteItem: function (deletingItem) {
+            return $.ajax({
+                type: "DELETE",
+                url: "/shoppingCartItems",
+                data: deletingItem
+            });
+        },
     },
 
     fields: [
@@ -37,7 +65,15 @@
             type: "number",
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
-            }
+            },
+            validate: {
+                message: function (value, item) {
+                    return "Introduceti numar mai mare ca 0";
+                },
+                validator: function (value, item) {
+                    return value > 0;
+                }
+            },
         },
 
         {
