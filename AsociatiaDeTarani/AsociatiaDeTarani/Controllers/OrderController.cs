@@ -57,8 +57,10 @@ namespace AsociatiaDeTarani.Controllers
                 client.Adress = modelee.Adress;
                 client.PhoneNumber = modelee.PhoneNumber;
                 _clientRepository.Insert(client);
+                order.ClientId = client.ClientId;
             }
 
+            
             order.PlacementDate = DateTime.Now;
             order.TotalPrice = 1;
 

@@ -2,8 +2,19 @@
 @{
 
     Layout = "_ClientLayout";
-    @model ProductsListViewModel
+    @model ProductsAndProducersListViewModel
  }
+
+<div>
+    <select>
+        <option value="default">Alege</option>
+        @foreach (var producer in Model.Producers)
+        {
+            <option value="@producer.ProducerId">@producer.Name</option>
+        }
+    </select>
+</div>
+
 
 <div class="card-columns">
     @foreach (var product in Model.Products)
@@ -12,7 +23,6 @@
             <img class="card-img" src="@Url.Content(product.PhotoUrl)"/>
             <div class="card-body">
                 <h5 class="card-title">@product.Name</h5>
-                <h3 class="card-text">@product.Producer</h3>
                 <h3 class="card-text">@product.Price lei/kg</h3>
             </div>
         </div>

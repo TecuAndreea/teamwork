@@ -234,3 +234,7 @@ F:\VS C# Munca\WEB\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0
 F:\VS C# Munca\WEB\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Product\Index.cshtml.g.cs
 F:\VS C# Munca\WEB\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderForm.cshtml.g.cs
 F:\VS C# Munca\WEB\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderHistory.cshtml.g.cs
+C:\Users\Andrew\Documents\GitHub\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderForm.cshtml.g.cs
+C:\Users\Andrew\Documents\GitHub\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderHistory.cshtml.g.cs
+C:\Users\Andrew\Documents\GitHub\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\ShoppingCart.cshtml.g.cs
+C:\Users\Andrew\Documents\GitHub\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Product\Index.cshtml.g.cs

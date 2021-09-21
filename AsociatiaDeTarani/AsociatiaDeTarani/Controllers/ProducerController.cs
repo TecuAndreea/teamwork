@@ -20,7 +20,7 @@ namespace AsociatiaDeTarani.Controllers
         }
         public IActionResult Index()
         {
-            var homeViewModel = new ProducersListViewModel
+            var homeViewModel = new ProductsAndProducersListViewModel
             {
                 Producers = _producerRepository.GetAll()
             };
