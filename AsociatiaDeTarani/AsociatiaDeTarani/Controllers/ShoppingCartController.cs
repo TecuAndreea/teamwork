@@ -43,7 +43,7 @@ namespace AsociatiaDeTarani.Controllers
             if (SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart") == null)
             {
                 List<ShoppingCartItem> cart = new List<ShoppingCartItem>();
-                cart.Add(new ShoppingCartItem { Product = productModel, Amount = 1 });
+                cart.Add(new ShoppingCartItem { Product = productModel, Amount = 1, Price = productModel.Price });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             else
@@ -53,10 +53,11 @@ namespace AsociatiaDeTarani.Controllers
                 if (index != -1)
                 {
                     cart[index].Amount++;
+                    cart[index].Price = cart[index].Product.Price * cart[index].Amount;
                 }
                 else
                 {
-                    cart.Add(new ShoppingCartItem { Product = productModel, Amount = 1 });
+                    cart.Add(new ShoppingCartItem { Product = productModel, Amount = 1, Price = productModel.Price });
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
@@ -81,6 +82,7 @@ namespace AsociatiaDeTarani.Controllers
             List<ShoppingCartItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
             int index = GetItemIndex(item.Product.ProductId);
             cart[index].Amount = item.Amount;
+            cart[index].Price = item.Amount * item.Product.Price;
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
         }
 
@@ -96,5 +98,6 @@ namespace AsociatiaDeTarani.Controllers
             }
             return -1;
         }
+
     }
 }

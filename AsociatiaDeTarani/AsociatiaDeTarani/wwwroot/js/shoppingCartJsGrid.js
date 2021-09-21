@@ -12,14 +12,6 @@
 
     deleteConfirm: "Sigur stergeti toate produsele de acest fel din cos?",
 
-    rowClick: function (args) {
-        console.log(args)
-        var getData = args.item;
-        var text = [];
-        text.push(getData["product"])
-        sessionStorage.setItem("shoppingItemProduct", text);
-    },
-
     controller: {
         loadData: function (filter) {
             return $.ajax({
@@ -51,17 +43,17 @@
         {
             name: "product.name",
             width: 50,
-            title: "Product",
+            title: "Produs",
             sorting: false,
             filtering: false,
             itemTemplate: function (value, item) {
-                return "<div style='color:blue'>" + value + "</div>"
+                return "<div style='color:green'>" + value + "</div>"
             }
         },
         {
             name: "amount",
             width: 50,
-            title: "Amount",
+            title: "Cantitate",
             type: "number",
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
@@ -73,6 +65,21 @@
                 validator: function (value, item) {
                     return value > 0;
                 }
+            },
+        },
+
+        {
+            name: "price",
+            title: "Pret",
+            itemTemplate: function (value, item) {
+                var currency = "";
+                if (value == 1) {
+                    currency = " leu";
+                }
+                else {
+                    currency = " lei";
+                }
+                return "<div>" + value + currency + "</div>"
             },
         },
 

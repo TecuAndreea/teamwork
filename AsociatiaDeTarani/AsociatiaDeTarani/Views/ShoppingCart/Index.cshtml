@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
 
-<div id="shoppingCartGrid"></div>
+<div class="container">
+    <div id="shoppingCartGrid"></div>
+    <label id="totalCart" style="display:none;"></label>
+    <a class="btn btn-success" style="margin-top:1em; margin-bottom:1em;" asp-area="" asp-controller="Order" asp-action="OrderForm">Comanda</a>
+</div>
 
 <script src="~/js/shoppingCartJsGrid.js" asp-append-version="true"></script>
