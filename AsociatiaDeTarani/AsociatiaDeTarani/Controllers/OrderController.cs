@@ -40,38 +40,45 @@ namespace AsociatiaDeTarani.Controllers
         [HttpPost]
         public ActionResult OrderForm(OrderDetailsViewModel modelee)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-            
-            Order order = new Order();
-            Client client = new Client();
 
-            Client clientAlreadyInDb = _clientRepository.GetAll().Where(x => x.PhoneNumber == modelee.PhoneNumber).FirstOrDefault();
-            if (clientAlreadyInDb != null)
-            {
-                order.ClientId = clientAlreadyInDb.ClientId;
+                Order order = new Order();
+                Client client = new Client();
+
+                Client clientAlreadyInDb = _clientRepository.GetAll().Where(x => x.PhoneNumber == modelee.PhoneNumber).FirstOrDefault();
+                if (clientAlreadyInDb != null)
+                {
+                    order.ClientId = clientAlreadyInDb.ClientId;
+                }
+                else
+                {
+                    client.Name = modelee.Name;
+                    client.Adress = modelee.Adress;
+                    client.PhoneNumber = modelee.PhoneNumber;
+                    _clientRepository.Insert(client);
+                    order.ClientId = client.ClientId;
+                }
+
+
+                order.PlacementDate = DateTime.Now;
+                order.TotalPrice = 1;
+
+
+                _orderRepository.Insert(order);
+
+
+
+                return RedirectToAction("OrderHistory");
             }
-            else
-            {
-                client.Name = modelee.Name;
-                client.Adress = modelee.Adress;
-                client.PhoneNumber = modelee.PhoneNumber;
-                _clientRepository.Insert(client);
-                order.ClientId = client.ClientId;
-            }
-
-            
-            order.PlacementDate = DateTime.Now;
-            order.TotalPrice = 1;
-
-
-            _orderRepository.Insert(order);
-
-
-
-            return RedirectToAction("OrderHistory");
-        }
             return View();
+        }
+
+        [HttpGet]
+        [Route("/orders")]
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return _orderRepository.GetAll();
         }
 
     }
