@@ -70,7 +70,6 @@ body {
 }
 
 .footer {
-    position: absolute;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
@@ -113,8 +112,6 @@ legend.section-border {
     border-bottom: none;
 }
 
-
-
 .section-title {
     border: 2px;
     border-style: dotted;
@@ -124,4 +121,11 @@ legend.section-border {
     font-style: italic;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: mediumturquoise
+}
+
+#addToCart {
+    float: right;
+    margin-bottom: 1em;
+    background-color: #189352;
+    color: white;
 }

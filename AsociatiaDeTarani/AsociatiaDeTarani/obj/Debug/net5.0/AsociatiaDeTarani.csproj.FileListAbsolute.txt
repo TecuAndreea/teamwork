@@ -212,7 +212,6 @@ C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTaran
 C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderForm.cshtml.g.cs
 C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderHistory.cshtml.g.cs
-C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\ShoppingCart.cshtml.g.cs
 C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Producer\Index.cshtml.g.cs
 C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Product\Index.cshtml.g.cs
 C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
@@ -318,3 +317,4 @@ E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\ref\AsociatiaDeTarani.dll
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\AsociatiaDeTarani.pdb
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\AsociatiaDeTarani.genruntimeconfig.cache
+C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\ShoppingCart\Index.cshtml.g.cs

@@ -23,11 +23,6 @@ namespace AsociatiaDeTarani.Controllers
             _clientRepository = clientRepository;
         }
 
-        public IActionResult ShoppingCart()
-        {
-            return View();
-        }
-
         public IActionResult OrderForm()
         {
             return View();
