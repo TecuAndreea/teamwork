@@ -23,7 +23,7 @@
             <img class="card-img" src="@Url.Content(product.PhotoUrl)"/>
             <div class="card-body">
                 <h5 class="card-title">@product.Name</h5>
-                <h3 class="card-text">@product.Price lei/kg</h3>
+                <h3 class="card-text">@product.Price lei/ @product.Weight kg</h3>
                 <a id="addToCart" class="btn" asp-area="" asp-controller="ShoppingCart" asp-action="AddProduct" asp-route-productId="@product.ProductId">Adauga in cos</a>
             </div>
         </div>

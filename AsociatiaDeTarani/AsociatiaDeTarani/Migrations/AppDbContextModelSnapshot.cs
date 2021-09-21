@@ -140,6 +140,38 @@ namespace AsociatiaDeTarani.Migrations
                             MinimumOrder = 150.0,
                             Name = "Petre Vasile",
                             PhoneNumber = "0745678123"
+                        },
+                        new
+                        {
+                            ProducerId = 4,
+                            DeliveryCost = 13.0,
+                            MinimumOrder = 120.0,
+                            Name = "Mihai Alexandru",
+                            PhoneNumber = "0712345622"
+                        },
+                        new
+                        {
+                            ProducerId = 5,
+                            DeliveryCost = 15.0,
+                            MinimumOrder = 100.0,
+                            Name = "Costea Andrei",
+                            PhoneNumber = "0798754321"
+                        },
+                        new
+                        {
+                            ProducerId = 6,
+                            DeliveryCost = 17.0,
+                            MinimumOrder = 180.0,
+                            Name = "Miron Claudiu",
+                            PhoneNumber = "0755533322"
+                        },
+                        new
+                        {
+                            ProducerId = 7,
+                            DeliveryCost = 19.0,
+                            MinimumOrder = 150.0,
+                            Name = "Soare Anisoara",
+                            PhoneNumber = "0711223344"
                         });
                 });
 
@@ -183,7 +215,7 @@ namespace AsociatiaDeTarani.Migrations
                             ProductId = 1,
                             AvailableStock = 100.0,
                             Name = "Rosii Bio",
-                            PhotoUrl = "~/Images/IonescuMihai/RosiiBio.jpg",
+                            PhotoUrl = "/Images/IonescuMihai/RosiiBio.jpg",
                             Price = 6.0,
                             ProducerId = 1,
                             Weight = 1.0
@@ -193,8 +225,28 @@ namespace AsociatiaDeTarani.Migrations
                             ProductId = 2,
                             AvailableStock = 80.0,
                             Name = "Castraveti Bio",
-                            PhotoUrl = "~/Images/IonescuMihai/CastravetiBio.jpg",
+                            PhotoUrl = "/Images/IonescuMihai/CastravetiBio.jpg",
                             Price = 3.0,
+                            ProducerId = 1,
+                            Weight = 1.0
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            AvailableStock = 200.0,
+                            Name = "Morcovi Bio",
+                            PhotoUrl = "/Images/IonescuMihai/morcovi.jpg",
+                            Price = 2.0,
+                            ProducerId = 1,
+                            Weight = 1.0
+                        },
+                        new
+                        {
+                            ProductId = 6,
+                            AvailableStock = 70.0,
+                            Name = "Ridichi Bio",
+                            PhotoUrl = "/Images/IonescuMihai/ridichi.jpg",
+                            Price = 10.0,
                             ProducerId = 1,
                             Weight = 1.0
                         },
@@ -203,9 +255,209 @@ namespace AsociatiaDeTarani.Migrations
                             ProductId = 3,
                             AvailableStock = 200.0,
                             Name = "Varza Bio",
-                            PhotoUrl = "~/Images/PetreVasile/VarzaBio.jpg",
+                            PhotoUrl = "/Images/PetreVasile/VarzaBio.jpg",
                             Price = 50.0,
                             ProducerId = 2,
+                            Weight = 10.0
+                        },
+                        new
+                        {
+                            ProductId = 7,
+                            AvailableStock = 100.0,
+                            Name = "Salata",
+                            PhotoUrl = "/Images/PetreVasile/salata1.jpg",
+                            Price = 5.0,
+                            ProducerId = 2,
+                            Weight = 1.0
+                        },
+                        new
+                        {
+                            ProductId = 8,
+                            AvailableStock = 200.0,
+                            Name = "Ceapa",
+                            PhotoUrl = "/Images/PetreVasile/ceapa1.jpg",
+                            Price = 50.0,
+                            ProducerId = 2,
+                            Weight = 25.0
+                        },
+                        new
+                        {
+                            ProductId = 9,
+                            AvailableStock = 1500.0,
+                            Name = "Cartofi",
+                            PhotoUrl = "/Images/PetreVasile/cartofi.jpg",
+                            Price = 50.0,
+                            ProducerId = 2,
+                            Weight = 50.0
+                        },
+                        new
+                        {
+                            ProductId = 10,
+                            AvailableStock = 200.0,
+                            Name = "Ceapa",
+                            PhotoUrl = "/Images/PetreVasile/ceapa1.jpg",
+                            Price = 50.0,
+                            ProducerId = 4,
+                            Weight = 25.0
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            AvailableStock = 200.0,
+                            Name = "Castraveti Bio",
+                            PhotoUrl = "/Images/MihaiAlexandru/castravetiBio.jpg",
+                            Price = 35.0,
+                            ProducerId = 4,
+                            Weight = 10.0
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            AvailableStock = 60.0,
+                            Name = "Castraveti Bio",
+                            PhotoUrl = "/Images/MihaiAlexandru/salata2.jpg",
+                            Price = 10.0,
+                            ProducerId = 4,
+                            Weight = 2.0
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            AvailableStock = 300.0,
+                            Name = "Ridichi Bio",
+                            PhotoUrl = "/Images/MihaiAlexandru/ridichi1.jpg",
+                            Price = 100.0,
+                            ProducerId = 4,
+                            Weight = 10.0
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            AvailableStock = 175.0,
+                            Name = "Morcovi Bio",
+                            PhotoUrl = "/Images/MihaiAlexandru/morcovi1.jpg",
+                            Price = 30.0,
+                            ProducerId = 4,
+                            Weight = 10.0
+                        },
+                        new
+                        {
+                            ProductId = 15,
+                            AvailableStock = 500.0,
+                            Name = "Cartofi Rosii",
+                            PhotoUrl = "/Images/CosteaAndrei/cartofiRosii.jpg",
+                            Price = 50.0,
+                            ProducerId = 5,
+                            Weight = 25.0
+                        },
+                        new
+                        {
+                            ProductId = 16,
+                            AvailableStock = 1000.0,
+                            Name = "Cartofi",
+                            PhotoUrl = "/Images/CosteaAndrei/cartofi2.jpg",
+                            Price = 25.0,
+                            ProducerId = 5,
+                            Weight = 25.0
+                        },
+                        new
+                        {
+                            ProductId = 17,
+                            AvailableStock = 600.0,
+                            Name = "Ceapa",
+                            PhotoUrl = "/Images/CosteaAndrei/ceapa.jpg",
+                            Price = 45.0,
+                            ProducerId = 5,
+                            Weight = 20.0
+                        },
+                        new
+                        {
+                            ProductId = 18,
+                            AvailableStock = 300.0,
+                            Name = "Ceapa Rosie",
+                            PhotoUrl = "/Images/CosteaAndrei/ceapaRosie.jpg",
+                            Price = 60.0,
+                            ProducerId = 5,
+                            Weight = 25.0
+                        },
+                        new
+                        {
+                            ProductId = 19,
+                            AvailableStock = 300.0,
+                            Name = "Castraveti",
+                            PhotoUrl = "/Images/MironClaudiu/castraveti.jpg",
+                            Price = 40.0,
+                            ProducerId = 6,
+                            Weight = 10.0
+                        },
+                        new
+                        {
+                            ProductId = 20,
+                            AvailableStock = 400.0,
+                            Name = "ceapaRosie1",
+                            PhotoUrl = "/Images/MironClaudiu/ceapaRosie1.jpg",
+                            Price = 30.0,
+                            ProducerId = 6,
+                            Weight = 10.0
+                        },
+                        new
+                        {
+                            ProductId = 21,
+                            AvailableStock = 300.0,
+                            Name = "Mere",
+                            PhotoUrl = "/Images/MironClaudiu/mere1.jpg",
+                            Price = 20.0,
+                            ProducerId = 6,
+                            Weight = 5.0
+                        },
+                        new
+                        {
+                            ProductId = 22,
+                            AvailableStock = 300.0,
+                            Name = "Ridichi",
+                            PhotoUrl = "/Images/MironClaudiu/ridichi.jpg",
+                            Price = 25.0,
+                            ProducerId = 6,
+                            Weight = 3.0
+                        },
+                        new
+                        {
+                            ProductId = 23,
+                            AvailableStock = 1200.0,
+                            Name = "Cartofi",
+                            PhotoUrl = "/Images/SoareAnisoara/cartofi1.jpg",
+                            Price = 75.0,
+                            ProducerId = 7,
+                            Weight = 75.0
+                        },
+                        new
+                        {
+                            ProductId = 24,
+                            AvailableStock = 700.0,
+                            Name = "Ceapa",
+                            PhotoUrl = "/Images/SoareAnisoara/ceapa2.jpg",
+                            Price = 75.0,
+                            ProducerId = 7,
+                            Weight = 30.0
+                        },
+                        new
+                        {
+                            ProductId = 25,
+                            AvailableStock = 200.0,
+                            Name = "Mere",
+                            PhotoUrl = "/Images/SoareAnisoara/mere2.jpg",
+                            Price = 20.0,
+                            ProducerId = 7,
+                            Weight = 5.0
+                        },
+                        new
+                        {
+                            ProductId = 26,
+                            AvailableStock = 200.0,
+                            Name = "Morcovi",
+                            PhotoUrl = "/Images/SoareAnisoara/morcovi2.jpg",
+                            Price = 15.0,
+                            ProducerId = 7,
                             Weight = 10.0
                         });
                 });
