@@ -14,6 +14,9 @@ $("#jsGrid2").jsGrid({
     selecting: true,
     paging: true,
     autosearch: true,
+    invalidNotify: function (args) {
+        $('#alert-error-not-submit').removeClass('hidden');
+    },
     pageLoading: false,
     pageSize: 5,
     pageButtonCount: 5,
@@ -69,6 +72,16 @@ $("#jsGrid2").jsGrid({
             width: 50,
             title: "Nume",
             type: "text",
+
+            validate: {
+                message: function (value, item) {
+                    return "Introduceti numele complet.";
+                },
+                validator: function (value, item) {
+                    return /^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)$/.test(value);
+                }
+            },
+
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
             }
@@ -78,6 +91,15 @@ $("#jsGrid2").jsGrid({
             width: 50,
             title: "Numar telefon",
             type: "text",
+            validate: "required",
+            validate: {
+                message: function (value, item) {
+                    return "Indroduceti un numar valid de telefon.";
+                },
+                validator: function (value, item) {
+                    return /^([0-9]{10})$/.test(value);
+                }
+            },
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
             }
@@ -88,6 +110,17 @@ $("#jsGrid2").jsGrid({
             width: 50,
             title: "Cost livrare",
             type: "number",
+            validate: {
+                validator: "range",
+                message: function (value, item) {
+                    if(value!=undefined)
+                        return "Alegeti costul livrarii intre 0 si 1000 lei. Ati introdus \"" + value + "\" dar este in afara intervalului.";
+                    else
+                    return "Alegeti costul livrarii intre 0 si 1000 lei.";
+                },
+                param: [0, 1000]
+            },
+
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
             }
@@ -98,6 +131,17 @@ $("#jsGrid2").jsGrid({
             width: 50,
             title: "Comanda minima",
             type: "number",
+            validate: {
+                validator: "range",
+                message: function (value, item) {
+                    if(value!=undefined)
+                        return "Alegeti comanda minima intre 0 si 1000 lei. Ati introdus \"" + value + "\" dar este in afara intervalului.";
+                    else
+                    return "Alegeti comanda minima intre 0 si 1000 lei.";
+                },
+                param: [0, 1000]
+            },
+
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
             }

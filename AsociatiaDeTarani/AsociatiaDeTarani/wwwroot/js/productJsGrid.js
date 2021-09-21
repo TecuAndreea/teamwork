@@ -13,6 +13,9 @@ $("#productJsGrid").jsGrid({
     sorting: true,
     selecting: true,
     paging: true,
+    invalidNotify: function (args) {
+        $('#alert-error-not-submit').removeClass('hidden');
+    },
     autosearch: true,
     pageLoading: false,
     pageSize: 5,
@@ -70,6 +73,15 @@ $("#productJsGrid").jsGrid({
             width: 50,
             title: "Nume",
             type: "text",
+            validate: {
+                message: function (value, item) {
+                    return "Introduceti numele complet al produsului.";
+                },
+                validator: function (value, item) {
+                    return /^([a-zA-Z ]{2,})$/.test(value);
+                }
+            },
+
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
             }
@@ -79,6 +91,18 @@ $("#productJsGrid").jsGrid({
             width: 50,
             title: "Pret",
             type: "number",
+            validate: "required",
+            validate: {
+                validator: "range",
+                message: function (value, item) {
+                    if (value != undefined)
+                        return "Alegeti pretul produsului /kg intre 0 si 1000 lei. Ati introdus \"" + value + "\" dar este in afara intervalului.";
+                    else
+                        return "Alegeti pretul produsului /kg intre 0 si 1000 lei.";
+                },
+                param: [0, 1000]
+            },
+
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
             }
@@ -89,6 +113,16 @@ $("#productJsGrid").jsGrid({
             width: 50,
             title: "Gramaj",
             type: "number",
+            validate: {
+                validator: "range",
+                message: function (value, item) {
+                    if (value != undefined)
+                        return "Alegeti gramajul produsului in kg, intre 0 si 1000. Ati introdus \"" + value + "\" dar este in afara intervalului.";
+                    else
+                        return "Alegeti gramajul produsului in kg, intre 0 si 1000.";
+                },
+                param: [0, 1000]
+            },
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
             }
@@ -99,6 +133,16 @@ $("#productJsGrid").jsGrid({
             width: 50,
             title: "Stoc disponibil",
             type: "number",
+            validate: {
+                validator: "range",
+                message: function (value, item) {
+                    if (value != undefined)
+                        return "Alegeti stocul disponibil al produsului in kg, intre 0 si 100000 . Ati introdus \"" + value + "\" dar este in afara intervalului.";
+                    else
+                        return "Alegeti stocul disponibil al produsului in kg, intre 0 si 100000.";
+                },
+                param: [0, 100000]
+            },
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
             }
@@ -110,7 +154,8 @@ $("#productJsGrid").jsGrid({
             name: "photoUrl",
             width: 50,
             title: "Poza Produs",
-            editing:false,
+            editing: false,
+
             itemTemplate: function (value, item) {
                 var $photo = $("<div>").append($("<img width='100%' height='auto'>").attr("src", ".." + value.substring(1)));
                 return $("<tr>").append($("<td>").append($photo));
