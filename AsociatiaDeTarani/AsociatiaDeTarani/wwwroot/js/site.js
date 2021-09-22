@@ -22,7 +22,7 @@ $("#jsGrid2").jsGrid({
     pageButtonCount: 5,
     pageIndex: 1,
 
-    deleteConfirm: "Are you sure you want to delete the item?",
+    deleteConfirm: "Esti sigur ca vrei sa stergi acest producator?",
 
     rowClick: function (args) {
         console.log(args)

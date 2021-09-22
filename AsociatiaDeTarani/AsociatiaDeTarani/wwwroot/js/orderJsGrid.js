@@ -19,9 +19,6 @@ $("#orderJsGrid").jsGrid({
     pageButtonCount: 5,
     pageIndex: 1,
 
-    deleteConfirm: "Are you sure you want to delete the item?",
-
-
     controller: {
         loadData: function (filter) {
             return $.ajax({
