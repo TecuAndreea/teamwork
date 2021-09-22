@@ -25,8 +25,7 @@ namespace AsociatiaDeTarani.ViewModels
         [Required(ErrorMessage = "Introduceti adresa")]
         [StringLength(50)]
         public string Adress { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime PlacementDate { get; set; }
+        public string PlacementDate { get; set; }
         public double TotalPrice { get; set; }
 
     }

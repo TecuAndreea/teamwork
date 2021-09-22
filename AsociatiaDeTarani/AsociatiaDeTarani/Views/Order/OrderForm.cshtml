@@ -4,64 +4,67 @@
     Layout = "_ClientLayout"; }
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-@using (Html.BeginForm("OrderForm", "Order", FormMethod.Post, htmlAttributes: new { @class = "form-group row" }))
-{
-@Html.AntiForgeryToken()
-                <div class="container">
-                    <div class="form-horizontal">
-                        <fieldset class="section-border">
-                            <legend class="section-border">
-                                Detalii personale
-                            </legend>
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Adress, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.Adress, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Adress, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset class="section-border">
-                            <legend class="section-border">
-                                Detalii comanda
-                            </legend>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.PlacementDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.PlacementDate, new { htmlAttributes = new { @class = "form-control", type = "date", @placeholder = "invoice date", disabled = "disabled" } })
-                                    @Html.ValidationMessageFor(model => model.PlacementDate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-8">
-                                    @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly", } })
-                                    @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </fieldset>
-                        <div class="col-md-6">
-                            <input type="submit" value="Trimite comanda" class="btn btn-block btn-primary" />
-                        </div>
+<body style="background-image: linear-gradient(to bottom, #d1d16b, #cad56e, #c2da72, #bade77, #b1e27d, #a5e688, #99ea94, #8deea1, #7df2b6, #6ef6cb, #63f9df, #5ffbf1)">
+    @using (Html.BeginForm("OrderForm", "Order", FormMethod.Post, htmlAttributes: new { @class = "form-group row" }))
+    {
+        @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="form-group">
+            <fieldset class="section-border">
+                <legend class="section-border">
+                    Detalii personale
+                </legend>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-row" style="margin-bottom:2em">
+                    @Html.LabelFor(model => model.Name, "Nume", new { @class = "control-label col-md-1" })                    
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { placeholder = "Introduceti numele aici", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+                <div class="form-row" style="margin-bottom:2em">
+                        @Html.LabelFor(model => model.Adress, "Adresa", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Adress, new { htmlAttributes = new { placeholder = "Introduceti adresa aici", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Adress, "", new { @class = "text-danger" })
                     </div>
-                </div>}
+                </div>
+                <div class="form-row" style="margin-bottom:2em">
+                    @Html.LabelFor(model => model.PhoneNumber, "Numar telefon", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { placeholder = "Introduceti numarul de telefon aici", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="section-border">
+                <legend class="section-border">
+                    Detalii comanda
+                </legend>
+                <div class="form-row" style="margin-bottom:2em">
+                        @Html.LabelFor(model => model.PlacementDate, "Data comenzii", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.PlacementDate, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @readonly = "readonly", placeholder=DateTime.Now.ToString("dd/MM/yyyy") } })
+                        @Html.ValidationMessageFor(model => model.PlacementDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row" style="margin-bottom:2em">
+                        @Html.LabelFor(model => model.TotalPrice, "Pretul total", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly"} })
+                        @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </fieldset>
+            <div class="col-md-4 offset-8">
+                <input type="submit" value="Trimite comanda spre procesare" class="btn btn-block btn-secondary" />
+            </div>
+        </div>
+    </div>
+}
 
-<div>
-    @Html.ActionLink("Vezi cosul", "Index","ShoppingCart")
-</div>
+    <div>
+        @Html.ActionLink("Vezi cosul", "Index", "ShoppingCart")
+        <i class="fa fa-shopping-cart"></i>
+    </div>
+</body>
