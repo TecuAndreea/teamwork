@@ -157,7 +157,7 @@ $("#productJsGrid").jsGrid({
             editing: false,
 
             itemTemplate: function (value, item) {
-                var $photo = $("<div>").append($("<img width='100%' height='auto'>").attr("src", ".." + value.substring(1)));
+                var $photo = $("<div>").append($("<img width='100%' height='auto'>").attr("src", "../" + value.substring(1)));
                 return $("<tr>").append($("<td>").append($photo));
 
             },
