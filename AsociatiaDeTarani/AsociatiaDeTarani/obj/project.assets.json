@@ -5797,24 +5797,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Andrew\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\VladimirPC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andrew\\Documents\\GitHub\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj",
+      "projectUniqueName": "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj",
       "projectName": "AsociatiaDeTarani",
-      "projectPath": "C:\\Users\\Andrew\\Documents\\GitHub\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj",
-      "packagesPath": "C:\\Users\\Andrew\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andrew\\Documents\\GitHub\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\obj\\",
+      "projectPath": "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj",
+      "packagesPath": "C:\\Users\\VladimirPC\\.nuget\\packages\\",
+      "outputPath": "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Andrew\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\VladimirPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5873,7 +5868,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

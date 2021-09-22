@@ -9,7 +9,7 @@ $("#orderJsGrid").jsGrid({
 
     heading: true,
     autoload: true,
-    inserting: true,
+    inserting: false,
     sorting: true,
     selecting: true,
     paging: true,
@@ -26,38 +26,29 @@ $("#orderJsGrid").jsGrid({
         loadData: function (filter) {
             return $.ajax({
                 type: "GET",
-                url: "/orders",
+                url: "/ordersAndClientName",
                 data: filter,
                 dataType: "json"
             });
         },
-
-        insertItem: function (insertingItem) {
-            return $.ajax({
-                type: "POST",
-                url: "/orders",
-                data: insertingItem
-            });
-        }
-
     },
 
     fields: [
         {
             name: "orderId",
             width: 50,
-            title: "Id Comanda",
+            title: "Nr. Comanda",
             sorting: false,
             filtering: false,
             itemTemplate: function (value, item) {
-                return "<div style='color:blue'>" + value + "</div>"
+                return "<div style='color:blue'>" + "CO000" + value + "</div>"
             }
         },
         {
-            name: "clientId",
+            name: "clientName",
             width: 50,
-            title: "Id Client",
-            type: "number",
+            title: "Nume Client",
+            type: "text",
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
             }
@@ -68,7 +59,17 @@ $("#orderJsGrid").jsGrid({
             title: "Data plasarii",
             type: "text",
             itemTemplate: function (value, item) {
-                return "<div>" + value + "</div>"
+                var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                return "<div>" + new Date(value).toLocaleDateString('ro-RO', options) + "</div>";
+            }
+        },
+        {
+            name: "placementDate",
+            width: 50,
+            title: "Ora plasarii",
+            type: "text",
+            itemTemplate: function (value, item) {
+                return "</div>" + new Date(value).toTimeString() + "</div>";
             }
         },
         {
@@ -79,10 +80,6 @@ $("#orderJsGrid").jsGrid({
             itemTemplate: function (value, item) {
                 return "<div>" + value + "</div>"
             }
-        },
-
-        {
-            type: "control"
         }
     ]
 

@@ -32,6 +32,7 @@ namespace AsociatiaDeTarani.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult OrderForm(OrderDetailsViewModel modelee)
         {
@@ -70,13 +71,20 @@ namespace AsociatiaDeTarani.Controllers
         }
 
         [HttpGet]
-        [Route("/orders")]
-        public IEnumerable<Order> GetAllOrders()
+        [Route("/ordersAndClientName")]
+        public IEnumerable<JoinOrdersClients> GetAllOrdersAndClientName()
         {
-            return _orderRepository.GetAll();
+            var result = from orders in _orderRepository.GetAll()
+                         join clients in _clientRepository.GetAll() on orders.ClientId equals clients.ClientId
+                         select new JoinOrdersClients
+                         {
+                             OrderId = orders.OrderId,
+                             ClientName = clients.Name,
+                             PlacementDate = orders.PlacementDate,
+                             TotalPrice = orders.TotalPrice
+                         };
+
+            return result;
         }
-
     }
-
-
 }
