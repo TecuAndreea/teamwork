@@ -10,5 +10,7 @@ namespace AsociatiaDeTarani.ViewModels
     {
         public IEnumerable<Producer> Producers { get; set; }
         public IEnumerable<Product> Products { get; set; }
+        public string SearchTerm { get; set; }
+        public string FilterTerm { get; set; }
     }
 }

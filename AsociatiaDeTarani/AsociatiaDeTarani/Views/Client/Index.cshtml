@@ -3,27 +3,38 @@
 
     Layout = "_ClientLayout";
     @model ProductsAndProducersListViewModel
- }
+}
 
-<div>
-    <select>
-        <option value="default">Alege</option>
-        @foreach (var producer in Model.Producers)
-        {
-            <option value="@producer.ProducerId">@producer.Name</option>
-        }
-    </select>
-</div>
+<form class="form-row" method="get" style="margin-bottom:2em; margin-top:2em">
+    <div class="col-sm-7">
+        <input class="form-control" type="text" asp-for="SearchTerm" placeholder="Cauta.." margin-right:1em">
+    </div>
+
+    <div class="col-sm-2">
+        <select class="form-control" asp-for="FilterTerm" style="margin-right: 1em">
+            <option value="default">Alege Producator</option>
+            @foreach (var producer in Model.Producers)
+            {
+                <option value="@producer.Name">@producer.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-sm-3">
+        <button type="submit" class="btn btn-primary">Cauta</button>
+    </div>
+</form>
 
 
 <div class="card-columns">
     @foreach (var product in Model.Products)
-    { 
+    {
         <div class="card">
-            <img class="card-img" src="@Url.Content(product.PhotoUrl)"/>
+            <img class="card-img" src="@Url.Content(product.PhotoUrl)" />
             <div class="card-body">
-                <h5 class="card-title">@product.Name</h5>
-                <h3 class="card-text">@product.Price lei/ @product.Weight kg</h3>
+                <h3 class="card-title">@product.Name</h3>
+                <h5 class="card-text">@product.Price lei/ @product.Weight kg</h5>
+                <h6>@product.Producer.Name</h6>
                 <a id="addToCart" class="btn" asp-area="" asp-controller="ShoppingCart" asp-action="AddProduct" asp-route-productId="@product.ProductId">Adauga in cos</a>
             </div>
         </div>
