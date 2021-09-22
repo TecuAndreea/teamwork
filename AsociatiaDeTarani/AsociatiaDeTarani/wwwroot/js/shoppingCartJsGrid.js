@@ -12,7 +12,7 @@
 
     onRefreshed: function (args) {
 
-        var total = { "product": { "name": "Total" }, "amount": "", "price": 0 };
+        var total = { "product": { "name": "Total" }, "amount": "", "price": 0, "IsTotal": true };
 
         $.ajax({
             type: "GET",
@@ -104,7 +104,12 @@
         },
 
         {
-            type: "control"
+            type: "control",
+            itemTemplate: function (_, item) {
+                if (item.IsTotal)
+                    return "";
+                return jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
+            }
         }
     ]
 });
