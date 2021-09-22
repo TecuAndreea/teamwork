@@ -4,7 +4,7 @@
     Layout = "_ClientLayout"; }
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<body style="background-image: linear-gradient(to bottom, #d1d16b, #cad56e, #c2da72, #bade77, #b1e27d, #a5e688, #99ea94, #8deea1, #7df2b6, #6ef6cb, #63f9df, #5ffbf1)">
+<body>
     @using (Html.BeginForm("OrderForm", "Order", FormMethod.Post, htmlAttributes: new { @class = "form-group row" }))
     {
         @Html.AntiForgeryToken()

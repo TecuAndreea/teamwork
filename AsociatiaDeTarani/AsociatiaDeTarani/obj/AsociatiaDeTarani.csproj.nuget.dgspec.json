@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tecu_\\Desktop\\Scholarship-Internship\\Teamwork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj": {}
+    "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tecu_\\Desktop\\Scholarship-Internship\\Teamwork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj": {
+    "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tecu_\\Desktop\\Scholarship-Internship\\Teamwork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj",
+        "projectUniqueName": "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj",
         "projectName": "AsociatiaDeTarani",
-        "projectPath": "C:\\Users\\tecu_\\Desktop\\Scholarship-Internship\\Teamwork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj",
-        "packagesPath": "C:\\Users\\tecu_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tecu_\\Desktop\\Scholarship-Internship\\Teamwork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\obj\\",
+        "projectPath": "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj",
+        "packagesPath": "C:\\Users\\VladimirPC\\.nuget\\packages\\",
+        "outputPath": "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\tecu_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\VladimirPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

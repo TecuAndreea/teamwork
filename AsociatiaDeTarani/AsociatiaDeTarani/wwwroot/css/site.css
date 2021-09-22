@@ -67,13 +67,17 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
+    background: rgba(0, 0, 0, 0.05) linear-gradient(to bottom, #d1d16b, #cad56e, #c2da72, #bade77, #b1e27d, #a5e688, #99ea94, #8deea1, #7df2b6, #6ef6cb, #63f9df, #5ffbf1);
+    background-blend-mode: darken;
 }
 
 .footer {
+    position: absolute;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
+    background-color: #fff;
 }
 
 .card-img {
