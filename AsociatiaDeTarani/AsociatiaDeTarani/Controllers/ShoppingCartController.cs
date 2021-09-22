@@ -15,11 +15,13 @@ namespace AsociatiaDeTarani.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        private readonly IGenericRepository<Product> _repository;
+        private readonly IGenericRepository<Product> _productRepository;
+        private readonly IGenericRepository<Producer> _producerRepository;
 
-        public ShoppingCartController(IGenericRepository<Product> repository)
+        public ShoppingCartController(IGenericRepository<Product> productRepository, IGenericRepository<Producer> producerRepository)
         {
-            _repository = repository;
+            _productRepository = productRepository;
+            _producerRepository = producerRepository;
         }
 
         public IActionResult Index()
@@ -38,7 +40,7 @@ namespace AsociatiaDeTarani.Controllers
 
         public RedirectToActionResult AddProduct(int productId)
         {
-            Product productModel = _repository.GetByCondition(p => p.ProductId == productId).FirstOrDefault();
+            Product productModel = _productRepository.GetByCondition(p => p.ProductId == productId).FirstOrDefault();
 
             if (SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart") == null)
             {
@@ -99,5 +101,46 @@ namespace AsociatiaDeTarani.Controllers
             return -1;
         }
 
+        [HttpGet]
+        [Route("/shoppingCartItems/total")]
+        public double GetTotalCart()
+        {
+            double total = 0;
+
+            if (SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart") != null)
+            {
+                List<ShoppingCartItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
+                total = cart.Select(i => i.Price).Sum();
+            }
+
+            return total;
+        }
+
+        private void AddProducer(int producerId)
+        {
+            Producer producerModel = _producerRepository.GetByCondition(p => p.ProducerId == producerId).FirstOrDefault();
+
+            if (SessionHelper.GetObjectFromJson<List<Producer>>(HttpContext.Session, "producers") == null)
+            {
+                List<Producer> producers = new List<Producer>();
+                producers.Add(producerModel);
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "producers", producers);
+            }
+            else
+            {
+                List<Producer> producers = SessionHelper.GetObjectFromJson<List<Producer>>(HttpContext.Session, "producers");
+                if (!producers.Contains(producerModel))
+                {
+                    producers.Add(producerModel);
+                }
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "producers", producers);
+            }
+        }
+
+        public bool IsValidForOrder()
+        {
+
+            return true;
+        }
     }
 }

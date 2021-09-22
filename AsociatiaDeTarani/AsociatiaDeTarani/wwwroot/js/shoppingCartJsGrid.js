@@ -10,6 +10,26 @@
         $('#alert-error-not-submit').removeClass('hidden');
     },
 
+    onRefreshed: function (args) {
+
+        var total = { "product": { "name": "Total" }, "amount": "", "price": 0 };
+
+        $.ajax({
+            type: "GET",
+            url: "/shoppingCartItems/total",
+            async: false,
+            success: function (data) {
+                total.price = data;
+            }
+        });
+
+        var $totalRow = $("<tr>").addClass("total-row");
+
+        args.grid._renderCells($totalRow, total);
+
+        args.grid._content.append($totalRow);
+    },
+
     deleteConfirm: "Sigur stergeti toate produsele de acest fel din cos?",
 
     controller: {
@@ -47,7 +67,7 @@
             sorting: false,
             filtering: false,
             itemTemplate: function (value, item) {
-                return "<div style='color:green'>" + value + "</div>"
+                return "<div>" + value + "</div>"
             }
         },
         {

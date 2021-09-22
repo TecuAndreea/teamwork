@@ -129,3 +129,20 @@ legend.section-border {
     background-color: #189352;
     color: white;
 }
+
+.jsgrid-cell {
+    overflow: hidden;
+}
+
+.jsgrid-pager {
+    text-align: center;
+}
+
+.total-row {
+    font-weight: bold;
+    background: #f5f5f5;
+}
+
+    .total-row td {
+        border-top: 2px solid #efefef;
+    }
