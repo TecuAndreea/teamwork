@@ -79,13 +79,14 @@ namespace AsociatiaDeTarani.Controllers
 
         [HttpPut]
         [Route("/shoppingCartItems")]
-        public void UpdateAmount(ShoppingCartItem item)
+        public ShoppingCartItem UpdateAmount(ShoppingCartItem item)
         {
             List<ShoppingCartItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
             int index = GetItemIndex(item.Product.ProductId);
             cart[index].Amount = item.Amount;
             cart[index].Price = item.Amount * item.Product.Price;
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            return cart[index];
         }
 
         private int GetItemIndex(int id)
