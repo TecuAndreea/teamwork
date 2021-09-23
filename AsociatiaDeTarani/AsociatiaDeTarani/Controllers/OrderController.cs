@@ -54,11 +54,14 @@ namespace AsociatiaDeTarani.Controllers
                     client.PhoneNumber = modelee.PhoneNumber;
                     _clientRepository.Insert(client);
                     order.ClientId = client.ClientId;
+
                 }
 
 
+                var price = TempData["total"].ToString();
                 order.PlacementDate = DateTime.Now;
-                order.TotalPrice = 1;
+                double.TryParse(price, out double result);
+                order.TotalPrice = result;
 
 
                 _orderRepository.Insert(order);

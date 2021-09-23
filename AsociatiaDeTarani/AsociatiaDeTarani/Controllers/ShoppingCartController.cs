@@ -25,6 +25,9 @@ namespace AsociatiaDeTarani.Controllers
 
         public IActionResult Index()
         {
+            TempData["totalShowed"] = GetTotalCart().ToString();
+            TempData["total"] = GetTotalCart().ToString();
+            ViewBag.total= GetTotalCart().ToString();
             return View();
         }
 
