@@ -13,6 +13,7 @@
     onRefreshed: function (args) {
 
         var total = { "product": { "name": "Total" }, "amount": "", "price": 0, "IsTotal": true };
+        var totalDelivery = { "product": { "name": "Transport" }, "amount": "", "price": 0, "IsTotal": true };
 
         $.ajax({
             type: "GET",
@@ -23,10 +24,92 @@
             }
         });
 
-        var $totalRow = $("<tr>").addClass("total-row");
+        $.ajax({
+            type: "GET",
+            url: "/shoppingCartItems/totalDelivery",
+            async: false,
+            success: function (data) {
+                totalDelivery.price = data;
+            }
+        });
 
+        var $totalRow = $("<tr>").addClass("total-row");
+        var $totalDeliveryRow = $("<tr>").addClass("total-row");
+
+        args.grid._renderCells($totalDeliveryRow, totalDelivery);
         args.grid._renderCells($totalRow, total);
 
+        args.grid._content.append($totalDeliveryRow);
+        args.grid._content.append($totalRow);
+    },
+
+    onItemUpdated: function (args) {
+
+        var total = { "product": { "name": "Total" }, "amount": "", "price": 0, "IsTotal": true };
+        var totalDelivery = { "product": { "name": "Transport" }, "amount": "", "price": 0, "IsTotal": true };
+
+        $.ajax({
+            type: "GET",
+            url: "/shoppingCartItems/total",
+            async: false,
+            success: function (data) {
+                total.price = data;
+            }
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "/shoppingCartItems/totalDelivery",
+            async: false,
+            success: function (data) {
+                totalDelivery.price = data;
+            }
+        });
+
+        $("#shoppingCartGrid").find("tbody tr").filter(".total-row").remove();
+
+        var $totalRow = $("<tr>").addClass("total-row");
+        var $totalDeliveryRow = $("<tr>").addClass("total-row");
+
+        args.grid._renderCells($totalDeliveryRow, totalDelivery);
+        args.grid._renderCells($totalRow, total);
+
+        args.grid._content.append($totalDeliveryRow);
+        args.grid._content.append($totalRow);
+    },
+
+    onItemDeleted: function (args) {
+
+        var total = { "product": { "name": "Total" }, "amount": "", "price": 0, "IsTotal": true };
+        var totalDelivery = { "product": { "name": "Transport" }, "amount": "", "price": 0, "IsTotal": true };
+
+        $.ajax({
+            type: "GET",
+            url: "/shoppingCartItems/total",
+            async: false,
+            success: function (data) {
+                total.price = data;
+            }
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "/shoppingCartItems/totalDelivery",
+            async: false,
+            success: function (data) {
+                totalDelivery.price = data;
+            }
+        });
+
+        $("#shoppingCartGrid").find("tbody tr").filter(".total-row").remove();
+
+        var $totalRow = $("<tr>").addClass("total-row");
+        var $totalDeliveryRow = $("<tr>").addClass("total-row");
+
+        args.grid._renderCells($totalDeliveryRow, totalDelivery);
+        args.grid._renderCells($totalRow, total);
+
+        args.grid._content.append($totalDeliveryRow);
         args.grid._content.append($totalRow);
     },
 

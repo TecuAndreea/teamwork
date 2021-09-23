@@ -4,7 +4,6 @@ using AsociatiaDeTarani.Repositories;
 using AsociatiaDeTarani.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,7 +63,23 @@ namespace AsociatiaDeTarani.Controllers
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
 
+            AddProducer(productModel.ProducerId);
+
             return RedirectToAction("Index", "Client");
+        }
+
+        [HttpPut]
+        [Route("/shoppingCartItems")]
+        public ShoppingCartItem UpdateAmount(ShoppingCartItem item)
+        {
+            List<ShoppingCartItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
+            int index = GetItemIndex(item.Product.ProductId);
+            int lastAmount = cart[index].Amount;
+            cart[index].Amount = item.Amount;
+            cart[index].Price = item.Amount * item.Product.Price;
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            UpdateProducerItemsCount(item, lastAmount);
+            return cart[index];
         }
 
         [HttpDelete]
@@ -75,18 +90,100 @@ namespace AsociatiaDeTarani.Controllers
             int index = GetItemIndex(item.Product.ProductId);
             cart.RemoveAt(index);
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            int lastAmount = item.Amount;
+            item.Amount = 0;
+            UpdateProducerItemsCount(item, lastAmount);
+            RemoveProducer(item.Product.ProducerId);
         }
 
-        [HttpPut]
-        [Route("/shoppingCartItems")]
-        public ShoppingCartItem UpdateAmount(ShoppingCartItem item)
+        private void AddProducer(int producerId)
         {
-            List<ShoppingCartItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
-            int index = GetItemIndex(item.Product.ProductId);
-            cart[index].Amount = item.Amount;
-            cart[index].Price = item.Amount * item.Product.Price;
-            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
-            return cart[index];
+            Producer producerModel = _producerRepository.GetByCondition(p => p.ProducerId == producerId).FirstOrDefault();
+
+            if (SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount") == null)
+            {
+                List<ProducerShoppingCartItemCount> producersItemsCount = new List<ProducerShoppingCartItemCount>();
+                producersItemsCount.Add(new ProducerShoppingCartItemCount { Producer = producerModel, NrItemsInCart = 1 });
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "producersItemsCount", producersItemsCount);
+            }
+            else
+            {
+                List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
+                int index = GetProducerItemsCountIndex(producerId);
+                if (index != -1)
+                {
+                    producersItemsCount[index].NrItemsInCart++;
+                }
+                else
+                {
+                    producersItemsCount.Add(new ProducerShoppingCartItemCount { Producer = producerModel, NrItemsInCart = 1 });
+                }
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "producersItemsCount", producersItemsCount);
+            }
+        }
+
+        private void UpdateProducerItemsCount(ShoppingCartItem item, int lastAmount)
+        {
+            List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
+            int index = GetProducerItemsCountIndex(item.Product.ProducerId);
+            producersItemsCount[index].NrItemsInCart = producersItemsCount[index].NrItemsInCart - lastAmount + item.Amount;
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "producersItemsCount", producersItemsCount);
+        }
+
+        private void RemoveProducer(int producerId)
+        {
+            List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
+            int index = GetProducerItemsCountIndex(producerId);
+            if (producersItemsCount[index].NrItemsInCart == 0)
+            {
+                producersItemsCount.RemoveAt(index);
+            }
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "producersItemsCount", producersItemsCount);
+        }
+
+        [HttpGet]
+        [Route("/shoppingCartItems/totalDelivery")]
+        public double GetTotalDelivery()
+        {
+            double totalDelivery = 0;
+
+            List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
+            foreach (var producerItemsCount in producersItemsCount)
+            {
+                totalDelivery += producerItemsCount.Producer.DeliveryCost;
+            }
+
+            return totalDelivery;
+        }
+
+        [HttpGet]
+        [Route("/shoppingCartItems/total")]
+        public double GetTotalCart()
+        {
+            double total = 0;
+
+            if (SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart") != null)
+            {
+                List<ShoppingCartItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
+                total = cart.Select(i => i.Price).Sum();
+            }
+
+            total += GetTotalDelivery();
+
+            return total;
+        }
+
+        public bool IsValidForOrder()
+        {
+            List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
+            foreach (var producerItemsCount in producersItemsCount)
+            {
+                if(producerItemsCount.NrItemsInCart < producerItemsCount.Producer.MinimumOrder)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private int GetItemIndex(int id)
@@ -102,46 +199,17 @@ namespace AsociatiaDeTarani.Controllers
             return -1;
         }
 
-        [HttpGet]
-        [Route("/shoppingCartItems/total")]
-        public double GetTotalCart()
+        private int GetProducerItemsCountIndex(int id)
         {
-            double total = 0;
-
-            if (SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart") != null)
+            List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
+            for (int i = 0; i < producersItemsCount.Count; i++)
             {
-                List<ShoppingCartItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
-                total = cart.Select(i => i.Price).Sum();
-            }
-
-            return total;
-        }
-
-        private void AddProducer(int producerId)
-        {
-            Producer producerModel = _producerRepository.GetByCondition(p => p.ProducerId == producerId).FirstOrDefault();
-
-            if (SessionHelper.GetObjectFromJson<List<Producer>>(HttpContext.Session, "producers") == null)
-            {
-                List<Producer> producers = new List<Producer>();
-                producers.Add(producerModel);
-                SessionHelper.SetObjectAsJson(HttpContext.Session, "producers", producers);
-            }
-            else
-            {
-                List<Producer> producers = SessionHelper.GetObjectFromJson<List<Producer>>(HttpContext.Session, "producers");
-                if (!producers.Contains(producerModel))
+                if (producersItemsCount[i].Producer.ProducerId == id)
                 {
-                    producers.Add(producerModel);
+                    return i;
                 }
-                SessionHelper.SetObjectAsJson(HttpContext.Session, "producers", producers);
             }
-        }
-
-        public bool IsValidForOrder()
-        {
-
-            return true;
+            return -1;
         }
     }
 }
