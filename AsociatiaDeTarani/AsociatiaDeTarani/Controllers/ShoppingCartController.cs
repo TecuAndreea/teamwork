@@ -27,7 +27,8 @@ namespace AsociatiaDeTarani.Controllers
         {
             TempData["totalShowed"] = GetTotalCart().ToString();
             TempData["total"] = GetTotalCart().ToString();
-            ViewBag.total= GetTotalCart().ToString();
+            ViewData["total"] = GetTotalCart().ToString();
+
             return View();
         }
 
@@ -144,20 +145,6 @@ namespace AsociatiaDeTarani.Controllers
             SessionHelper.SetObjectAsJson(HttpContext.Session, "producersItemsCount", producersItemsCount);
         }
 
-        [HttpGet]
-        [Route("/shoppingCartItems/totalDelivery")]
-        public double GetTotalDelivery()
-        {
-            double totalDelivery = 0;
-
-            List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
-            foreach (var producerItemsCount in producersItemsCount)
-            {
-                totalDelivery += producerItemsCount.Producer.DeliveryCost;
-            }
-
-            return totalDelivery;
-        }
 
         [HttpGet]
         [Route("/shoppingCartItems/total")]
@@ -173,20 +160,46 @@ namespace AsociatiaDeTarani.Controllers
 
             total += GetTotalDelivery();
 
+            TempData["isValid"] = IsValidForOrder();
+
             return total;
         }
 
+        [HttpGet]
+        [Route("/shoppingCartItems/deliveryPerProducer")]
+        public List<Producer> GetDeliveryPerProducer()
+        {
+            List<Producer> producers = new();
+            List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
+
+            if (producersItemsCount != null)
+            {
+                foreach (var producerItemsCount in producersItemsCount)
+                {
+                    producers.Add(producerItemsCount.Producer);
+                }
+            }
+
+            return producers;
+        }
+
+        [HttpGet]
+        [Route("/shoppingCartItems/validOrder")]
         public bool IsValidForOrder()
         {
             List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
-            foreach (var producerItemsCount in producersItemsCount)
+            if (producersItemsCount != null)
             {
-                if(producerItemsCount.NrItemsInCart < producerItemsCount.Producer.MinimumOrder)
+                foreach (var producerItemsCount in producersItemsCount)
                 {
-                    return false;
+                    if (producerItemsCount.NrItemsInCart < producerItemsCount.Producer.MinimumOrder)
+                    {
+                        return false;
+                    }
                 }
+                return true;
             }
-            return true;
+            return false;
         }
 
         private int GetItemIndex(int id)
@@ -213,6 +226,22 @@ namespace AsociatiaDeTarani.Controllers
                 }
             }
             return -1;
+        }
+
+        private double GetTotalDelivery()
+        {
+            double totalDelivery = 0;
+
+            List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
+            if (producersItemsCount != null)
+            {
+                foreach (var producerItemsCount in producersItemsCount)
+                {
+                    totalDelivery += producerItemsCount.Producer.DeliveryCost;
+                }
+            }
+
+            return totalDelivery;
         }
     }
 }

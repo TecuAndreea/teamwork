@@ -13,7 +13,22 @@
     onRefreshed: function (args) {
 
         var total = { "product": { "name": "Total" }, "amount": "", "price": 0, "IsTotal": true };
-        var totalDelivery = { "product": { "name": "Transport" }, "amount": "", "price": 0, "IsTotal": true };
+
+        $.ajax({
+            type: "GET",
+            url: "/shoppingCartItems/validOrder",
+            async: false,
+            success: function (data) {
+                if (data == true) {
+                    $("#validForOrder").hide();
+                    $("#orderButton").show();
+                }
+                else {
+                    $("#orderButton").hide();
+                    $("#validForOrder").show();
+                }
+            }
+        });
 
         $.ajax({
             type: "GET",
@@ -26,27 +41,32 @@
 
         $.ajax({
             type: "GET",
-            url: "/shoppingCartItems/totalDelivery",
+            url: "/shoppingCartItems/deliveryPerProducer",
             async: false,
             success: function (data) {
-                totalDelivery.price = data;
+
+                for (var item of data) {
+                    var totalDelivery = { "product": { "name": "Transport: " + item.name }, "amount": "", "price": item.deliveryCost, "IsTotal": true };
+                    var $totalDeliveryRow = $("<tr>").addClass("total-row");
+
+                    args.grid._renderCells($totalDeliveryRow, totalDelivery);
+                    args.grid._content.append($totalDeliveryRow);
+                }
             }
         });
 
         var $totalRow = $("<tr>").addClass("total-row");
-        var $totalDeliveryRow = $("<tr>").addClass("total-row");
 
-        args.grid._renderCells($totalDeliveryRow, totalDelivery);
         args.grid._renderCells($totalRow, total);
 
-        args.grid._content.append($totalDeliveryRow);
         args.grid._content.append($totalRow);
     },
 
     onItemUpdated: function (args) {
 
         var total = { "product": { "name": "Total" }, "amount": "", "price": 0, "IsTotal": true };
-        var totalDelivery = { "product": { "name": "Transport" }, "amount": "", "price": 0, "IsTotal": true };
+
+        $("#shoppingCartGrid").find("tbody tr").filter(".total-row").remove();
 
         $.ajax({
             type: "GET",
@@ -59,29 +79,48 @@
 
         $.ajax({
             type: "GET",
-            url: "/shoppingCartItems/totalDelivery",
+            url: "/shoppingCartItems/validOrder",
             async: false,
             success: function (data) {
-                totalDelivery.price = data;
+                if (data == true) {
+                    $("#validForOrder").hide();
+                    $("#orderButton").show();
+                }
+                else {
+                    $("#orderButton").hide();
+                    $("#validForOrder").show();
+                }
             }
         });
 
-        $("#shoppingCartGrid").find("tbody tr").filter(".total-row").remove();
+        $.ajax({
+            type: "GET",
+            url: "/shoppingCartItems/deliveryPerProducer",
+            async: false,
+            success: function (data) {
+
+                for (var item of data) {
+                    var totalDelivery = { "product": { "name": "Transport: " + item.name }, "amount": "", "price": item.deliveryCost, "IsTotal": true };
+                    var $totalDeliveryRow = $("<tr>").addClass("total-row");
+
+                    args.grid._renderCells($totalDeliveryRow, totalDelivery);
+                    args.grid._content.append($totalDeliveryRow);
+                }
+            }
+        });
 
         var $totalRow = $("<tr>").addClass("total-row");
-        var $totalDeliveryRow = $("<tr>").addClass("total-row");
 
-        args.grid._renderCells($totalDeliveryRow, totalDelivery);
         args.grid._renderCells($totalRow, total);
 
-        args.grid._content.append($totalDeliveryRow);
         args.grid._content.append($totalRow);
     },
 
     onItemDeleted: function (args) {
 
         var total = { "product": { "name": "Total" }, "amount": "", "price": 0, "IsTotal": true };
-        var totalDelivery = { "product": { "name": "Transport" }, "amount": "", "price": 0, "IsTotal": true };
+
+        $("#shoppingCartGrid").find("tbody tr").filter(".total-row").remove();
 
         $.ajax({
             type: "GET",
@@ -94,22 +133,40 @@
 
         $.ajax({
             type: "GET",
-            url: "/shoppingCartItems/totalDelivery",
+            url: "/shoppingCartItems/validOrder",
             async: false,
             success: function (data) {
-                totalDelivery.price = data;
+                if (data == true) {
+                    $("#validForOrder").hide();
+                    $("#orderButton").show();
+                }
+                else {
+                    $("#orderButton").hide();
+                    $("#validForOrder").show();
+                }
             }
         });
 
-        $("#shoppingCartGrid").find("tbody tr").filter(".total-row").remove();
+        $.ajax({
+            type: "GET",
+            url: "/shoppingCartItems/deliveryPerProducer",
+            async: false,
+            success: function (data) {
+
+                for (var item of data) {
+                    var totalDelivery = { "product": { "name": "Transport: " + item.name }, "amount": "", "price": item.deliveryCost, "IsTotal": true };
+                    var $totalDeliveryRow = $("<tr>").addClass("total-row");
+
+                    args.grid._renderCells($totalDeliveryRow, totalDelivery);
+                    args.grid._content.append($totalDeliveryRow);
+                }
+            }
+        });
 
         var $totalRow = $("<tr>").addClass("total-row");
-        var $totalDeliveryRow = $("<tr>").addClass("total-row");
 
-        args.grid._renderCells($totalDeliveryRow, totalDelivery);
         args.grid._renderCells($totalRow, total);
 
-        args.grid._content.append($totalDeliveryRow);
         args.grid._content.append($totalRow);
     },
 

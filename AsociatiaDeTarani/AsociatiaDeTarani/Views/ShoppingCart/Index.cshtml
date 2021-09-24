@@ -10,7 +10,8 @@
 
 <div class="container">
     <div id="shoppingCartGrid"></div>
-    <a class="btn btn-success" style="margin-top:1em; margin-bottom:1em;" asp-area="" asp-controller="Order" asp-action="OrderForm">Comanda</a>
+    <a id="orderButton" class="btn btn-success" style="margin-top:1em; margin-bottom:1em; display: none;" asp-area="" asp-controller="Order" asp-action="OrderForm">Comanda</a>
+    <h3 id="validForOrder" style="display:none;">Comanda nu poate fi efectuata</h3>
 </div>
 
 <script src="~/js/shoppingCartJsGrid.js" asp-append-version="true"></script>
