@@ -35,6 +35,7 @@
                 <h3 class="card-title">@product.Name</h3>
                 <h5 class="card-text">@product.Price lei/ @product.Weight kg</h5>
                 <h6>@product.Producer.Name</h6>
+                <p> Comanda minima /producator: @product.Producer.MinimumOrder lei</p>
                 <a id="addToCart" class="btn" asp-area="" asp-controller="ShoppingCart" asp-action="AddProduct" asp-route-productId="@product.ProductId">Adauga in cos</a>
             </div>
         </div>

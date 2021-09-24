@@ -1,4 +1,5 @@
-﻿using AsociatiaDeTarani.Models;
+﻿using AsociatiaDeTarani.Helpers;
+using AsociatiaDeTarani.Models;
 using AsociatiaDeTarani.Repositories;
 using AsociatiaDeTarani.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -16,11 +17,13 @@ namespace AsociatiaDeTarani.Controllers
     {
         private readonly IGenericRepository<Order> _orderRepository;
         private readonly IGenericRepository<Client> _clientRepository;
+        private readonly IGenericRepository<OrderProduct> _orderProductRepository;
 
-        public OrderController(IGenericRepository<Order> orderRepository, IGenericRepository<Client> clientRepository)
+        public OrderController(IGenericRepository<Order> orderRepository, IGenericRepository<Client> clientRepository, IGenericRepository<OrderProduct> orderProductRepository)
         {
             _orderRepository = orderRepository;
             _clientRepository = clientRepository;
+            _orderProductRepository = orderProductRepository;
         }
 
         public IActionResult OrderForm()
@@ -58,15 +61,30 @@ namespace AsociatiaDeTarani.Controllers
                 }
 
 
-                var price = TempData["total"].ToString();
                 order.PlacementDate = DateTime.Now;
-                double.TryParse(price, out double result);
-                order.TotalPrice = result;
+                List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
+                var cart = GetShoppingCartItems();
 
 
+                
+                var total = cart.Select(x => x.Price).Sum();
+                order.TotalPrice = total;
+                var totalTransport = producersItemsCount.Select(x => x.Producer.DeliveryCost).Sum();
+                order.TotalPrice += totalTransport;
+                
                 _orderRepository.Insert(order);
 
+                ViewData["total"]= order.TotalPrice;
 
+                foreach (var item in cart)
+                {
+                    _orderProductRepository.Insert(
+                        new OrderProduct { OrderId=order.OrderId,
+                        ProductId=item.Product.ProductId,
+                        Quantity=item.Amount,
+                        TotalPriceProducts=item.Price
+                    });
+                }
 
                 return RedirectToAction("OrderHistory");
             }
@@ -88,6 +106,13 @@ namespace AsociatiaDeTarani.Controllers
                          };
 
             return result;
+        }
+
+        public IEnumerable<ShoppingCartItem> GetShoppingCartItems()
+        {
+            var cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
+
+            return cart;
         }
     }
 }

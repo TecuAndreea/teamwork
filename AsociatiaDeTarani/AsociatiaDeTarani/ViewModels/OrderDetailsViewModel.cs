@@ -26,7 +26,7 @@ namespace AsociatiaDeTarani.ViewModels
         [StringLength(50)]
         public string Adress { get; set; }
         public string PlacementDate { get; set; }
-        public string TotalPrice { get; set; }
+        public double TotalPrice { get; set; }
 
     }
 }

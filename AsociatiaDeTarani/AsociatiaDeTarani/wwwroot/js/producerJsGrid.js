@@ -18,7 +18,7 @@ $("#jsGrid2").jsGrid({
         $('#alert-error-not-submit').removeClass('hidden');
     },
     pageLoading: false,
-    pageSize: 5,
+    pageSize: 10,
     pageButtonCount: 5,
     pageIndex: 1,
 
@@ -57,16 +57,6 @@ $("#jsGrid2").jsGrid({
     },
 
     fields: [
-        {
-            name: "producerId",
-            width: 50,
-            title: "Id Producator",
-            sorting: false,
-            filtering: false,
-            itemTemplate: function (value, item) {
-                return "<div style='color:blue'>" + value + "</div>"
-            }
-        },
         {
             name: "name",
             width: 50,
