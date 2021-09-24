@@ -188,11 +188,19 @@ namespace AsociatiaDeTarani.Controllers
         public bool IsValidForOrder()
         {
             List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
-            if (producersItemsCount != null)
+            List<ShoppingCartItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
+            if (producersItemsCount != null && cart!=null)
             {
                 foreach (var producerItemsCount in producersItemsCount)
                 {
                     if (producerItemsCount.ItemsTotalPrice < producerItemsCount.Producer.MinimumOrder)
+                    {
+                        return false;
+                    }
+                }
+                foreach(var item in cart)
+                {
+                    if(item.Amount>item.Product.AvailableStock)
                     {
                         return false;
                     }

@@ -18,16 +18,29 @@ namespace AsociatiaDeTarani.Controllers
         private readonly IGenericRepository<Order> _orderRepository;
         private readonly IGenericRepository<Client> _clientRepository;
         private readonly IGenericRepository<OrderProduct> _orderProductRepository;
+        private readonly IGenericRepository<Product> _productRepository;
 
-        public OrderController(IGenericRepository<Order> orderRepository, IGenericRepository<Client> clientRepository, IGenericRepository<OrderProduct> orderProductRepository)
+        public OrderController(IGenericRepository<Order> orderRepository, IGenericRepository<Client> clientRepository, IGenericRepository<OrderProduct> orderProductRepository, IGenericRepository<Product> productRepository)
         {
             _orderRepository = orderRepository;
             _clientRepository = clientRepository;
             _orderProductRepository = orderProductRepository;
+            _productRepository = productRepository;
         }
 
         public IActionResult OrderForm()
         {
+            List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
+            var cart = GetShoppingCartItems();
+
+            OrderDetailsViewModel modele = new OrderDetailsViewModel();
+
+            var total = cart.Select(x => x.Price).Sum();
+            modele.TotalPrice = total;
+            var totalTransport = producersItemsCount.Select(x => x.Producer.DeliveryCost).Sum();
+            modele.TotalPrice += totalTransport;
+            ViewBag.total = modele.TotalPrice;
+
             return View();
         }
 
@@ -36,9 +49,15 @@ namespace AsociatiaDeTarani.Controllers
             return View();
         }
 
+        public IActionResult OrderHistoryForClient()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult OrderForm(OrderDetailsViewModel modelee)
         {
+
             if (ModelState.IsValid)
             {
 
@@ -85,8 +104,9 @@ namespace AsociatiaDeTarani.Controllers
                         TotalPriceProducts=item.Price
                     });
                 }
-
-                return RedirectToAction("OrderHistory");
+                HttpContext.Session.Clear();
+                UpdateStock(cart);
+                return RedirectToAction("OrderHistoryForClient");
             }
             return View();
         }
@@ -113,6 +133,16 @@ namespace AsociatiaDeTarani.Controllers
             var cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
 
             return cart;
+        }
+
+        void UpdateStock(IEnumerable<ShoppingCartItem> shoppingCartItems)
+        {
+            foreach(var item in shoppingCartItems)
+            {
+                Product product = _productRepository.GetByCondition(x => x.ProductId == item.Product.ProductId).FirstOrDefault();
+                product.AvailableStock -= item.Amount;
+                _productRepository.Update(product);
+            }
         }
     }
 }

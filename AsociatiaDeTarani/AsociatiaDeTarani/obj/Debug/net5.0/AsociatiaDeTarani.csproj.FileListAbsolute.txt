@@ -318,3 +318,4 @@ C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTaran
 F:\VS C# Munca\WEB\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\ShoppingCart\Index.cshtml.g.cs
 C:\Users\Andrew\Documents\GitHub\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\ShoppingCart\Index.cshtml.g.cs
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\ShoppingCart\Index.cshtml.g.cs
+F:\VS C# Munca\WEB\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderHistoryForClient.cshtml.g.cs

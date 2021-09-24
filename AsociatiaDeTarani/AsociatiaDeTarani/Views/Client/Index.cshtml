@@ -12,7 +12,7 @@
 
     <div class="col-sm-2">
         <select class="form-control" asp-for="FilterTerm" style="margin-right: 1em">
-            <option value="default">Alege Producator</option>
+            <option value="default">Toti producatorii</option>
             @foreach (var producer in Model.Producers)
             {
                 <option value="@producer.Name">@producer.Name</option>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="col-sm-3">
-        <button type="submit" class="btn btn-primary">Cauta</button>
+        <button type="submit" class="btn btn-secondary"><i class="fa fa-search">  Cauta</i></button>
     </div>
 </form>
 
@@ -36,7 +36,17 @@
                 <h5 class="card-text">@product.Price lei/ @product.Weight kg</h5>
                 <h6>@product.Producer.Name</h6>
                 <p> Comanda minima /producator: @product.Producer.MinimumOrder lei</p>
-                <a id="addToCart" class="btn" asp-area="" asp-controller="ShoppingCart" asp-action="AddProduct" asp-route-productId="@product.ProductId">Adauga in cos</a>
+                <p>Stoc disponibil: @(product.AvailableStock * product.Weight) kg</p>
+                @if (product.AvailableStock != 0)
+                {
+                    <a id="addToCart" disabled class="btn" asp-area="" asp-controller="ShoppingCart" asp-action="AddProduct" asp-route-productId="@product.ProductId">Adauga in cos</a>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-danger" disabled id="addToCartInavailable">Stoc indisponibil</button>
+                }
+
+
             </div>
         </div>
     }

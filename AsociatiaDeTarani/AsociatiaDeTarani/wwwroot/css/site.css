@@ -25,7 +25,7 @@ a {
 }
 
 .nav-link:hover {
-    background-color: #ddfcf6;
+    background-color:cadetblue;
 }
 
 /* Sticky footer styles
@@ -132,6 +132,11 @@ legend.section-border {
     margin-bottom: 1em;
     background-color: #189352;
     color: white;
+}
+
+#addToCartInavailable {
+    float: right;
+    margin-bottom: 1em;
 }
 
 .jsgrid-cell {
