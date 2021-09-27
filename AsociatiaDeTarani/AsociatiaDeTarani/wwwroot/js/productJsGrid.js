@@ -49,26 +49,27 @@ $("#productJsGrid").jsGrid({
         },
 
         insertItem: function (insertingItem) {
+            var formData = new FormData();
+            formData.append("productId", insertingItem.productId);
+            formData.append("name", insertingItem.name);
+            formData.append("price", insertingItem.price);
+            formData.append("weight", insertingItem.weight);
+            formData.append("availableStock", insertingItem.availableStock);
+            formData.append("photoUrl", insertingItem.photoUrl, insertingItem.photoUrl.name);
             return $.ajax({
+                method: "post",
                 type: "POST",
+                dataType: 'json',
                 url: "/products/" + sessionStorage.getItem("prod"),
-                data: insertingItem
+                data: formData,
+                contentType: false,
+                processData: false
             });
         }
 
     },
 
     fields: [
-        {
-            name: "productId",
-            width: 50,
-            title: "Id Produs",
-            sorting: false,
-            filtering: false,
-            itemTemplate: function (value, item) {
-                return "<div style='color:blue'>" + value + "</div>"
-            }
-        },
         {
             name: "name",
             width: 50,
@@ -158,18 +159,19 @@ $("#productJsGrid").jsGrid({
             editing: false,
 
             itemTemplate: function (value, item) {
-                var $photo = $("<div>").append($("<img width='100%' height='auto'>").attr("src", "../" + value.substring(1)));
+                var $photo = $("<div>").append($("<img width='100%' height='auto'>").attr("src", "../Images/"+sessionStorage.getItem("prodName") + value));
                 return $("<tr>").append($("<td>").append($photo));
 
             },
 
             insertTemplate: function () {
-
-                var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
-                var $myButton = $("<input type='file' id='myFile' name='filename' accept='image/*'>Imagine</input>");
-                this.photoUrl = "1";
-                return $result.add($myButton);
-            }
+                var insertControl = this.insertControl = $("<input>").prop("type", "file");
+                return insertControl;
+            },
+            insertValue: function () {
+               // alert(this.insertControl[0].files[0].name)
+                return this.insertControl[0].files[0];
+            },
         },
 
 

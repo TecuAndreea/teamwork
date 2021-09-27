@@ -28,8 +28,12 @@ $("#jsGrid2").jsGrid({
         console.log(args)
         var getData = args.item;     
         var text = [];
+        
         text.push(getData["producerId"])
+        var name = getData["name"];
+        var name2 = name.replace(/ /g, '')
         sessionStorage.setItem("prod", text);
+        sessionStorage.setItem("prodName", name2);
         $("#adaugareProdus").show();
 
         $("#label").text("Salut, " + getData["name"] + ' iti poti adauga alte produse la sectiunea "Adaugare produse".').css('font-weight','bold');

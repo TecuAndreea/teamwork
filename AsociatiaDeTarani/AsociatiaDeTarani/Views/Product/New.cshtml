@@ -1,0 +1,71 @@
+﻿@model AsociatiaDeTarani.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "NewProduct";
+    Layout = "_ProducerLayout";
+}
+
+<div class="col-md-10 mx-auto py-4">
+    <div class="card">
+        <div class="card-header bg-secondary text-uppercase text-white">
+            <h4>Adaugare produse </h4>
+        </div>
+        <div class="card-body">
+            <form enctype="multipart/form-data" asp-action="New">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label">Nume</label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Price" class="control-label">Pret</label>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="AvailableStock" class="control-label">Stoc disponibil</label>
+                            <input asp-for="AvailableStock" class="form-control" />
+                            <span asp-validation-for="AvailableStock" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Weight" class="control-label">Greutate in kg</label>
+                            <input asp-for="Weight" class="form-control" />
+                            <span asp-validation-for="Weight" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PhotoUrl" class="control-label">Imagine</label>
+                            <div class="custom-file">
+                                <input asp-for="PhotoUrl" class="custom-file-input" style="display:none" id="customFile">
+                                <label class="custom-file-label" for="customFile">Alege imagine</label>
+                            </div>
+                            <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Incarca produsul" class="
+                           btn btn-sm btn-secondary rounded-0 text-uppercase" />
+                    <a asp-action="Index" class="btn btn-sm btn-secondary rounded-0 text-uppercase"><i class="fas fa-fast-backward"></i> Vezi toate produsele</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
