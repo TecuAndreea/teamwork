@@ -49,18 +49,22 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            <label asp-for="PhotoUrl" class="control-label">Imagine</label>
                             <div class="custom-file">
-                                <input asp-for="PhotoUrl" class="custom-file-input" style="display:none" id="customFile">
-                                <label class="custom-file-label" for="customFile">Alege imagine</label>
-                            </div>
+
+                                <label for="files" class="btn btn-secondary">Selecteaza imagine</label>
+                                <input id="files" style="visibility:hidden;" type="file" onchange="loadFile(event)">
+
+                            </div>                            
                             <span asp-validation-for="PhotoUrl" class="text-danger"></span>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                       <img id="output" style="width:8em;border-radius:1em;margin-bottom:0.5em" />                        
+                    </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="float:right">
                     <input type="submit" value="Incarca produsul" class="
                            btn btn-sm btn-secondary rounded-0 text-uppercase" />
                     <a asp-action="Index" class="btn btn-sm btn-secondary rounded-0 text-uppercase"><i class="fas fa-fast-backward"></i> Vezi toate produsele</a>
@@ -69,3 +73,12 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    var loadFile = function (event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+
+</script>

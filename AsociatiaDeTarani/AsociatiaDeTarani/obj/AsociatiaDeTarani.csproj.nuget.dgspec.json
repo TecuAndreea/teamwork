@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj": {}
+    "F:\\VS C# Munca\\WEB\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj": {}
   },
   "projects": {
-    "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj": {
+    "F:\\VS C# Munca\\WEB\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj",
+        "projectUniqueName": "F:\\VS C# Munca\\WEB\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj",
         "projectName": "AsociatiaDeTarani",
-        "projectPath": "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj",
-        "packagesPath": "C:\\Users\\VladimirPC\\.nuget\\packages\\",
-        "outputPath": "E:\\Programare\\TalentingSoftware\\Scholarship\\Exercices\\ExercicesTeamWork\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\obj\\",
+        "projectPath": "F:\\VS C# Munca\\WEB\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\AsociatiaDeTarani.csproj",
+        "packagesPath": "C:\\Users\\macov\\.nuget\\packages\\",
+        "outputPath": "F:\\VS C# Munca\\WEB\\teamwork\\AsociatiaDeTarani\\AsociatiaDeTarani\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\VladimirPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\macov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
