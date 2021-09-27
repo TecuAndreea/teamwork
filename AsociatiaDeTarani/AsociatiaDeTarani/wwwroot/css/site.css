@@ -28,6 +28,10 @@ a {
     background-color: cadetblue;
 }
 
+.navbar {
+    background: rgba(0, 0, 0, 0.05) linear-gradient(to right, #d1d16b, #cad56e, #c2da72, #bade77, #b1e27d, #a5e688, #99ea94, #8deea1, #7df2b6, #6ef6cb, #63f9df, #5ffbf1);
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -79,7 +83,8 @@ body {
     width: 100%;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
-    background-color: #fff;
+    background: rgba(0, 0, 0, 0.05) linear-gradient(to left, #d1d16b, #cad56e, #c2da72, #bade77, #b1e27d, #a5e688, #99ea94, #8deea1, #7df2b6, #6ef6cb, #63f9df, #5ffbf1);
+    opacity: 70%;
 }
 
 .card-img {
@@ -143,10 +148,47 @@ legend.section-border {
 
 .jsgrid-cell {
     overflow: hidden;
+    background-color: #82cde5;
 }
 
 .jsgrid-pager {
     text-align: center;
+}
+
+.jsgrid-header-row > .jsgrid-header-cell {
+    background-color: #095d6a; /* orange */
+    font-family: "Roboto Slab";
+    font-size: 1.5em;
+    color: white;
+    font-weight: normal;
+}
+
+.jsgrid-row > .jsgrid-cell {
+    background-color: burlywood;
+}
+
+/* alternate rows */
+.jsgrid-alt-row > .jsgrid-cell {
+    background-color: #fbbc58;
+}
+
+/* editing row */
+.jsgrid-edit-row > .jsgrid-cell {
+    background-color: #ff6a00;
+}
+
+.jsgrid-pager {
+    background-color: white;
+    border-radius: 5px;
+    opacity: 80%;
+}
+
+.jsgrid-grid-header, .jsgrid-grid-body {
+    overflow: auto;
+}
+
+.jsgrid {
+    border-radius: 10px;
 }
 
 .total-row {

@@ -43,7 +43,7 @@ $("#orderJsGrid").jsGrid({
             sorting: false,
             filtering: false,
             itemTemplate: function (value, item) {
-                return "<div style='color:blue'>" + "CO000" + value + "</div>"
+                return "<div style='color: blue;'><b>" + "CO000" + value + "</b></div>"
             }
         },
         {

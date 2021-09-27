@@ -5,7 +5,6 @@
 
 $("#jsGrid2").jsGrid({
     width: "100%",
-    height: "auto",
 
     heading: true,
     editing: true,

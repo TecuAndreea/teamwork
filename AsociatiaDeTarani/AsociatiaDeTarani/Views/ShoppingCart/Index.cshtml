@@ -4,14 +4,12 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
 
 <div class="container">
-    <div id="shoppingCartGrid"></div>
+    <div id="shoppingCartGrid" style="margin-top: 4em"></div>
     <a id="orderButton" class="btn btn-success" style="margin-top:1em; margin-bottom:1em; display: none; float:right;" asp-area="" asp-controller="Order" asp-action="OrderForm">Comanda</a>
-    <h3 id="validForOrder" style="display:none; margin-top:1em">Comanda nu poate fi efectuata, verifica stocul produselor si comanda minima pe care o accepta producatorul de la care doriti sa cumparati.</h3>
+    <h3 id="validForOrder" style="display:none; margin-top:1em; color:white">Comanda nu poate fi efectuata!! <br />(verifica stocul produselor si comanda minima pe care o accepta producatorul de la care doriti sa cumparati)</h3>
 </div>
 
 <script src="~/js/shoppingCartJsGrid.js" asp-append-version="true"></script>

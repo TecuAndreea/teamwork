@@ -153,6 +153,7 @@ $("#productJsGrid").jsGrid({
             width: 50,
             title: "Poza Produs",
             editing: false,
+            sorting: false,
 
             itemTemplate: function (value, item) {
                 var $photo = $("<div>").append($("<img width='100%' height='auto'>").attr("src", "../" + value.substring(1)));
