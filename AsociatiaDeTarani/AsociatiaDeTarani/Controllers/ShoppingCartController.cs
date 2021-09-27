@@ -67,7 +67,7 @@ namespace AsociatiaDeTarani.Controllers
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
 
-            AddProducer(productModel.ProducerId,productModel.Price);
+            AddProducer(productModel.ProducerId, productModel.Price);
 
             return RedirectToAction("Index", "Client");
         }
@@ -101,7 +101,7 @@ namespace AsociatiaDeTarani.Controllers
             RemoveProducer(item.Product.ProducerId);
         }
 
-        private void AddProducer(int producerId,double sum)
+        private void AddProducer(int producerId, double sum)
         {
             Producer producerModel = _producerRepository.GetByCondition(p => p.ProducerId == producerId).FirstOrDefault();
 
@@ -117,7 +117,7 @@ namespace AsociatiaDeTarani.Controllers
                 int index = GetProducerItemsTotalPrice(producerId);
                 if (index != -1)
                 {
-                    producersItemsCount[index].ItemsTotalPrice+=sum;
+                    producersItemsCount[index].ItemsTotalPrice += sum;
                 }
                 else
                 {
@@ -189,7 +189,11 @@ namespace AsociatiaDeTarani.Controllers
         {
             List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
             List<ShoppingCartItem> cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
-            if (producersItemsCount != null && cart!=null)
+            if (GetTotalCart() == 0)
+            {
+                return false;
+            }
+            if (producersItemsCount != null && cart != null)
             {
                 foreach (var producerItemsCount in producersItemsCount)
                 {
@@ -198,9 +202,9 @@ namespace AsociatiaDeTarani.Controllers
                         return false;
                     }
                 }
-                foreach(var item in cart)
+                foreach (var item in cart)
                 {
-                    if(item.Amount>item.Product.AvailableStock)
+                    if (item.Amount > item.Product.AvailableStock)
                     {
                         return false;
                     }

@@ -8,6 +8,7 @@ $("#jsGrid2").jsGrid({
     height: "auto",
 
     heading: true,
+    editing: true,
     autoload: true,
     inserting: true,
     sorting: true,
@@ -26,9 +27,9 @@ $("#jsGrid2").jsGrid({
 
     rowClick: function (args) {
         console.log(args)
-        var getData = args.item;     
+        var getData = args.item;
         var text = [];
-        
+
         text.push(getData["producerId"])
         var name = getData["name"];
         var name2 = name.replace(/ /g, '')
@@ -36,7 +37,7 @@ $("#jsGrid2").jsGrid({
         sessionStorage.setItem("prodName", name2);
         $("#adaugareProdus").show();
 
-        $("#label").text("Salut, " + getData["name"] + ' iti poti adauga alte produse la sectiunea "Adaugare produse".').css('font-weight','bold');
+        $("#label").text("Salut, " + getData["name"] + ' iti poti adauga alte produse la sectiunea "Adaugare produse".').css('font-weight', 'bold');
 
     },
 
@@ -55,6 +56,14 @@ $("#jsGrid2").jsGrid({
                 type: "POST",
                 url: "/producers",
                 data: insertingItem
+            });
+        },
+
+        updateItem: function (updatingItem) {
+            return $.ajax({
+                type: "PUT",
+                url: "/producers",
+                data: updatingItem
             });
         }
 
@@ -107,10 +116,10 @@ $("#jsGrid2").jsGrid({
             validate: {
                 validator: "range",
                 message: function (value, item) {
-                    if(value!=undefined)
+                    if (value != undefined)
                         return "Alegeti costul livrarii intre 0 si 1000 lei. Ati introdus \"" + value + "\" dar este in afara intervalului.";
                     else
-                    return "Alegeti costul livrarii intre 0 si 1000 lei.";
+                        return "Alegeti costul livrarii intre 0 si 1000 lei.";
                 },
                 param: [0, 1000]
             },
@@ -128,10 +137,10 @@ $("#jsGrid2").jsGrid({
             validate: {
                 validator: "range",
                 message: function (value, item) {
-                    if(value!=undefined)
+                    if (value != undefined)
                         return "Alegeti comanda minima intre 0 si 1000 lei. Ati introdus \"" + value + "\" dar este in afara intervalului.";
                     else
-                    return "Alegeti comanda minima intre 0 si 1000 lei.";
+                        return "Alegeti comanda minima intre 0 si 1000 lei.";
                 },
                 param: [0, 1000]
             },
@@ -140,12 +149,13 @@ $("#jsGrid2").jsGrid({
                 return "<div>" + value + "</div>"
             }
         },
-       
+
 
         {
-            type: "control"
+            type: "control",
+            deleteButton: false
         }
 
-        
+
     ]
 });

@@ -3,13 +3,16 @@
 
 // Write your JavaScript code.
 
+$("#addProduct").click(function () {
+    $("#addProduct").attr("href", "/Product/New/" + sessionStorage.getItem("prod"));
+});
+
 $("#productJsGrid").jsGrid({
     width: "100%",
     height: "auto",
 
     heading: true,
     autoload: true,
-    inserting: true,
     editing: true,
     sorting: true,
     selecting: true,
@@ -48,24 +51,13 @@ $("#productJsGrid").jsGrid({
             });
         },
 
-        insertItem: function (insertingItem) {
-            var formData = new FormData();
-            formData.append("productId", insertingItem.productId);
-            formData.append("name", insertingItem.name);
-            formData.append("price", insertingItem.price);
-            formData.append("weight", insertingItem.weight);
-            formData.append("availableStock", insertingItem.availableStock);
-            formData.append("photoUrl", insertingItem.photoUrl, insertingItem.photoUrl.name);
+        deleteItem: function (deletingItem) {
             return $.ajax({
-                method: "post",
-                type: "POST",
-                dataType: 'json',
-                url: "/products/" + sessionStorage.getItem("prod"),
-                data: formData,
-                contentType: false,
-                processData: false
+                type: "DELETE",
+                url: "/products",
+                data: deletingItem
             });
-        }
+        },
 
     },
 
@@ -159,7 +151,7 @@ $("#productJsGrid").jsGrid({
             editing: false,
 
             itemTemplate: function (value, item) {
-                var $photo = $("<div>").append($("<img width='100%' height='auto'>").attr("src", "../Images/"+sessionStorage.getItem("prodName") + value));
+                var $photo = $("<div>").append($("<img width='100%' height='auto'>").attr("src", "../" + value.substring(1)));
                 return $("<tr>").append($("<td>").append($photo));
 
             },
@@ -169,7 +161,7 @@ $("#productJsGrid").jsGrid({
                 return insertControl;
             },
             insertValue: function () {
-               // alert(this.insertControl[0].files[0].name)
+                // alert(this.insertControl[0].files[0].name)
                 return this.insertControl[0].files[0];
             },
         },

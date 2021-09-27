@@ -11,15 +11,17 @@ using System.Threading.Tasks;
 
 namespace AsociatiaDeTarani.Controllers
 {
-    public class ProductController: Controller
+    public class ProductController : Controller
     {
         private readonly IGenericRepository<Product> _productRepository;
+        private readonly IGenericRepository<Producer> _producerRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductController(IGenericRepository<Product> productRepository, IWebHostEnvironment webHostEnvironment)
+        public ProductController(IGenericRepository<Product> productRepository, IWebHostEnvironment webHostEnvironment, IGenericRepository<Producer> producerRepository)
         {
             _productRepository = productRepository;
             _webHostEnvironment = webHostEnvironment;
+            _producerRepository = producerRepository;
         }
 
         public IActionResult Index()
@@ -33,17 +35,24 @@ namespace AsociatiaDeTarani.Controllers
 
         [HttpGet]
         [Route("/products/{id}")]
-        public IEnumerable<Product> GetAllProducts([FromRoute]int id)
+        public IEnumerable<Product> GetAllProducts([FromRoute] int id)
         {
             return _productRepository.GetByCondition(p => p.ProducerId == id);
         }
 
         [HttpPost]
         [Route("/products/{id}")]
-        public void InsertProduct([FromRoute]int id,Product product)
+        public void InsertProduct([FromRoute] int id, Product product)
         {
-            product.ProducerId=id;
+            product.ProducerId = id;
             _productRepository.Insert(product);
+        }
+
+        [HttpDelete]
+        [Route("/products")]
+        public void DeleteProduct(Product product)
+        {
+            _productRepository.Delete(product);
         }
 
         [HttpPut]
@@ -52,22 +61,25 @@ namespace AsociatiaDeTarani.Controllers
         {
             _productRepository.Update(product);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult New(ProductViewModel model)
+        [Route("/Product/New/{producerId}")]
+        public IActionResult New([FromRoute] int producerId, ProductViewModel model)
         {
             if (ModelState.IsValid)
             {
-                string uniqueFileName = UploadedFile(model,"test");
+                string producerName = _producerRepository.GetByCondition(p => p.ProducerId == producerId).FirstOrDefault().Name.Replace(" ", "");
+                string uniqueFileName = UploadedFile(model, producerName);
 
                 Product product = new Product
                 {
                     Name = model.Name,
                     AvailableStock = model.AvailableStock,
                     Price = model.Price,
-                    Weight=model.Weight,
-                    ProducerId=1,
-                    PhotoUrl = uniqueFileName,
+                    Weight = model.Weight,
+                    ProducerId = producerId,
+                    PhotoUrl = "/Images/" + producerName + "/" + uniqueFileName,
                 };
                 _productRepository.Insert(product);
                 return RedirectToAction("Index");
@@ -75,14 +87,14 @@ namespace AsociatiaDeTarani.Controllers
             return View();
         }
 
-        private string UploadedFile(ProductViewModel model,string name)
+        private string UploadedFile(ProductViewModel model, string name)
         {
             string uniqueFileName = null;
 
             if (model.PhotoUrl != null)
             {
-                
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images"+@"\"+name);
+
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images" + @"\" + name);
                 if (!Directory.Exists(uploadsFolder))
                 {
                     Directory.CreateDirectory(uploadsFolder);

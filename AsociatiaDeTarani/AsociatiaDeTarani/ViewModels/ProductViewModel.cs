@@ -12,17 +12,19 @@ namespace AsociatiaDeTarani.ViewModels
     {
         public int ProductId { get; set; }
         public int ProducerId { get; set; }
-        [Required(ErrorMessage = "Please enter product name")]
+        [Required(ErrorMessage = "Introduceti numele produsului")]
         [StringLength(50)]
-        [RegularExpression("^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)",
-            ErrorMessage = "Please insert a valid product name.")]
+        [RegularExpression("^([a-zA-Z ]*${2,})",
+            ErrorMessage = "Te rog introdu un nume valid")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Please enter your product price")]
+        [Required(ErrorMessage = "Introdu pretul produsului")]
         public double Price { get; set; }
-        [Required(ErrorMessage = "Please enter a valid URL")]
+        [Required(ErrorMessage = "Introduce-ti imaginea")]
         public IFormFile PhotoUrl { get; set; }
+        [Required(ErrorMessage = "Va rog introduceti greutatea in kg a prodosului")]
+
         public double? Weight { get; set; }
-        [Required(ErrorMessage = "Please enter your available stock")]
+        [Required(ErrorMessage = "Va rog introduceti stocul disponibil al prodosului")]
         public double AvailableStock { get; set; }
         public Producer Producer { get; set; }
 

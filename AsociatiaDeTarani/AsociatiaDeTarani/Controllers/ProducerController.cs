@@ -42,6 +42,13 @@ namespace AsociatiaDeTarani.Controllers
             _producerRepository.Insert(producer);
         }
 
+
+        [HttpPut]
+        [Route("/producers")]
+        public void UpdateProducer(Producer producer)
+        {
+            _producerRepository.Update(producer);
+        }
     }
 
 
