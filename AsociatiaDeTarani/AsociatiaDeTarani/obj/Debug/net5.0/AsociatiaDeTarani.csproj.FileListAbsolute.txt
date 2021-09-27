@@ -278,7 +278,6 @@ E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\AsociatiaDeTarani.csprojAssemblyReference.cache
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\AsociatiaDeTarani.GeneratedMSBuildEditorConfig.editorconfig
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\AsociatiaDeTarani.AssemblyInfoInputs.cache
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\AsociatiaDeTarani.AssemblyInfo.cs
@@ -322,3 +321,6 @@ F:\VS C# Munca\WEB\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0
 F:\VS C# Munca\WEB\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Product\New.cshtml.g.cs
 C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderHistoryForClient.cshtml.g.cs
 C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Product\New.cshtml.g.cs
+E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\AsociatiaDeTarani.csproj.AssemblyReference.cache
+E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderHistoryForClient.cshtml.g.cs
+E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Product\New.cshtml.g.cs

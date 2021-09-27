@@ -15,9 +15,14 @@ $("#orderJsGrid").jsGrid({
     paging: true,
     autosearch: true,
     pageLoading: false,
-    pageSize: 5,
-    pageButtonCount: 5,
+    pagerContainer: null,
     pageIndex: 1,
+    pageSize: 10,
+    pagerFormat: "Pagina: {first} {prev} {pages} {next} {last} {pageIndex} din {pageCount}",
+    pagePrevText: "Inapoi",
+    pageNextText: "Inainte",
+    pageFirstText: "Prima",
+    pageLastText: "Ultima",
 
     controller: {
         loadData: function (filter) {

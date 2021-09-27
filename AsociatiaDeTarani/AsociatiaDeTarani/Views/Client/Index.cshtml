@@ -4,50 +4,51 @@
     Layout = "_ClientLayout";
     @model ProductsAndProducersListViewModel
 }
-
-<form class="form-row" method="get" style="margin-bottom:2em; margin-top:2em">
-    <div class="col-sm-7">
-        <input class="form-control" type="text" asp-for="SearchTerm" placeholder="Cauta.." margin-right:1em">
-    </div>
-
-    <div class="col-sm-2">
-        <select class="form-control" asp-for="FilterTerm" style="margin-right: 1em">
-            <option value="default">Toti producatorii</option>
-            @foreach (var producer in Model.Producers)
-            {
-                <option value="@producer.Name">@producer.Name</option>
-            }
-        </select>
-    </div>
-
-    <div class="col-sm-3">
-        <button type="submit" class="btn btn-secondary"><i class="fa fa-search">  Cauta</i></button>
-    </div>
-</form>
-
-
-<div class="card-columns">
-    @foreach (var product in Model.Products)
-    {
-        <div class="card">
-            <img class="card-img" src="@Url.Content(product.PhotoUrl)" />
-            <div class="card-body">
-                <h3 class="card-title">@product.Name</h3>
-                <h5 class="card-text">@product.Price lei/ @product.Weight kg</h5>
-                <h6>@product.Producer.Name</h6>
-                <p> Comanda minima /producator: @product.Producer.MinimumOrder lei</p>
-                <p>Stoc disponibil: @(product.AvailableStock * product.Weight) kg</p>
-                @if (product.AvailableStock != 0)
-                {
-                    <a id="addToCart" disabled class="btn" asp-area="" asp-controller="ShoppingCart" asp-action="AddProduct" asp-route-productId="@product.ProductId">Adauga in cos</a>
-                }
-                else
-                {
-                    <button type="button" class="btn btn-danger" disabled id="addToCartInavailable">Stoc indisponibil</button>
-                }
-
-
-            </div>
+<body style="background: rgb(75,129,157); background: linear-gradient(180deg, rgba(75,129,157,1) 0%, rgba(122,160,169,1) 13%, rgba(178,186,171,1) 22%, rgba(218,205,153,1) 30%, rgba(240,214,129,1) 34%, rgba(245,207,110,1) 36%, rgba(236,202,98,1) 38%, rgba(238,205,65,1) 42%, rgba(243,197,51,1) 46%, rgba(232,180,58,1) 47%, rgba(208,115,36,1) 52%, rgba(169,111,31,1) 54%, rgba(151,97,25,1) 57%, rgba(196,134,29,1) 69%, rgba(182,107,13,1) 100%); ">
+    <form class="form-row" method="get" style="margin-bottom:2em; margin-top:2em">
+        <div class="col-sm-7">
+            <input class="form-control" type="text" asp-for="SearchTerm" placeholder="Cauta.." margin-right:1em">
         </div>
-    }
-</div>
+
+        <div class="col-sm-2">
+            <select class="form-control" asp-for="FilterTerm" style="margin-right: 1em">
+                <option value="default">Toti producatorii</option>
+                @foreach (var producer in Model.Producers)
+                {
+                    <option value="@producer.Name">@producer.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-sm-3">
+            <button type="submit" class="btn btn-secondary"><i class="fa fa-search">  Cauta</i></button>
+        </div>
+    </form>
+
+
+    <div class="card-columns">
+        @foreach (var product in Model.Products)
+        {
+            <div class="card">
+                <img class="card-img" src="@Url.Content(product.PhotoUrl)" />
+                <div class="card-body">
+                    <h3 class="card-title">@product.Name</h3>
+                    <h5 class="card-text">@product.Price lei/ @product.Weight kg</h5>
+                    <h6>@product.Producer.Name</h6>
+                    <p> Comanda minima /producator: @product.Producer.MinimumOrder lei</p>
+                    <p>Stoc disponibil: @(product.AvailableStock * product.Weight) kg</p>
+                    @if (product.AvailableStock != 0)
+                    {
+                        <a id="addToCart" disabled class="btn" asp-area="" asp-controller="ShoppingCart" asp-action="AddProduct" asp-route-productId="@product.ProductId">Adauga in cos</a>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-danger" disabled id="addToCartInavailable">Stoc indisponibil</button>
+                    }
+
+
+                </div>
+            </div>
+        }
+    </div>
+</body>

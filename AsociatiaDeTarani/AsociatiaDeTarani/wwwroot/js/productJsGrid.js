@@ -21,10 +21,14 @@ $("#productJsGrid").jsGrid({
         $('#alert-error-not-submit').removeClass('hidden');
     },
     autosearch: true,
-    pageLoading: false,
-    pageSize: 5,
-    pageButtonCount: 5,
+    pagerContainer: null,
     pageIndex: 1,
+    pageSize: 5,
+    pagerFormat: "Pagina: {first} {prev} {pages} {next} {last} {pageIndex} din {pageCount}",
+    pagePrevText: "Inapoi",
+    pageNextText: "Inainte",
+    pageFirstText: "Prima",
+    pageLastText: "Ultima",
 
     deleteConfirm: "Esti sigur ca vrei sa stergi acest produs?",
 

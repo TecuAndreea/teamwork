@@ -9,6 +9,14 @@
     invalidNotify: function (args) {
         $('#alert-error-not-submit').removeClass('hidden');
     },
+    pagerContainer: null,
+    pageIndex: 1,
+    pageSize: 5,
+    pagerFormat: "Pagina: {first} {prev} {pages} {next} {last} {pageIndex} din {pageCount}",
+    pagePrevText: "Inapoi",
+    pageNextText: "Inainte",
+    pageFirstText: "Prima",
+    pageLastText: "Ultima",
 
     onRefreshed: function (args) {
 

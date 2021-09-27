@@ -25,7 +25,7 @@ a {
 }
 
 .nav-link:hover {
-    background-color:cadetblue;
+    background-color: cadetblue;
 }
 
 /* Sticky footer styles
@@ -67,7 +67,9 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background: rgba(0, 0, 0, 0.05) linear-gradient(to bottom, #d1d16b, #cad56e, #c2da72, #bade77, #b1e27d, #a5e688, #99ea94, #8deea1, #7df2b6, #6ef6cb, #63f9df, #5ffbf1);
+    background: rgba(0, 0, 0, 0.2) url('../Images/lan-de-grau.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     background-blend-mode: darken;
 }
 

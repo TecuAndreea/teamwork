@@ -11,6 +11,5 @@ namespace AsociatiaDeTarani.Models
         public string ClientName { get; set; }
         public DateTime PlacementDate { get; set; }
         public double TotalPrice { get; set; }
-
     }
 }

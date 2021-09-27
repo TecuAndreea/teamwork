@@ -19,9 +19,14 @@ $("#jsGrid2").jsGrid({
         $('#alert-error-not-submit').removeClass('hidden');
     },
     pageLoading: false,
-    pageSize: 10,
-    pageButtonCount: 5,
+    pagerContainer: null,
     pageIndex: 1,
+    pageSize: 10,
+    pagerFormat: "Pagina: {first} {prev} {pages} {next} {last} {pageIndex} din {pageCount}",
+    pagePrevText: "Inapoi",
+    pageNextText: "Inainte",
+    pageFirstText: "Prima",
+    pageLastText: "Ultima",
 
     deleteConfirm: "Esti sigur ca vrei sa stergi acest producator?",
 

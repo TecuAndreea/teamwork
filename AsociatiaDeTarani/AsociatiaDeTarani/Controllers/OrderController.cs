@@ -85,24 +85,26 @@ namespace AsociatiaDeTarani.Controllers
                 var cart = GetShoppingCartItems();
 
 
-                
+
                 var total = cart.Select(x => x.Price).Sum();
                 order.TotalPrice = total;
                 var totalTransport = producersItemsCount.Select(x => x.Producer.DeliveryCost).Sum();
                 order.TotalPrice += totalTransport;
-                
+
                 _orderRepository.Insert(order);
 
-                ViewData["total"]= order.TotalPrice;
+                ViewData["total"] = order.TotalPrice;
 
                 foreach (var item in cart)
                 {
                     _orderProductRepository.Insert(
-                        new OrderProduct { OrderId=order.OrderId,
-                        ProductId=item.Product.ProductId,
-                        Quantity=item.Amount,
-                        TotalPriceProducts=item.Price
-                    });
+                        new OrderProduct
+                        {
+                            OrderId = order.OrderId,
+                            ProductId = item.Product.ProductId,
+                            Quantity = item.Amount,
+                            TotalPriceProducts = item.Price
+                        });
                 }
                 HttpContext.Session.Clear();
                 UpdateStock(cart);
@@ -137,7 +139,7 @@ namespace AsociatiaDeTarani.Controllers
 
         void UpdateStock(IEnumerable<ShoppingCartItem> shoppingCartItems)
         {
-            foreach(var item in shoppingCartItems)
+            foreach (var item in shoppingCartItems)
             {
                 Product product = _productRepository.GetByCondition(x => x.ProductId == item.Product.ProductId).FirstOrDefault();
                 product.AvailableStock -= item.Amount;
