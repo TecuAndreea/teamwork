@@ -1,5 +1,5 @@
-var orderGrid = (function () {
 
+var orderJsGrid = (function () {
     return {
         init: function () {
             $("#orderJsGrid").jsGrid({
@@ -22,6 +22,20 @@ var orderGrid = (function () {
                 pageNextText: "Inainte",
                 pageFirstText: "Prima",
                 pageLastText: "Ultima",
+
+                rowClick: function (args) {
+
+                    console.log(args)
+                    var getData = args.item;
+                    var text = [];
+
+                    text.push(getData["orderId"])
+                    
+                    sessionStorage.setItem("orderId", text);
+                    console.log("in order" + sessionStorage.getItem("orderId"));
+                    $('#exampleModalCenter').modal("show");
+                    
+                },
 
                 controller: {
                     loadData: function (filter) {
@@ -89,4 +103,5 @@ var orderGrid = (function () {
     }
 })();
 
-orderGrid.init();
+orderJsGrid.init();
+

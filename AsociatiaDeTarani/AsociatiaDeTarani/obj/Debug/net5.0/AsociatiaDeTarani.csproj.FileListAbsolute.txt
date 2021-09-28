@@ -324,3 +324,5 @@ C:\Users\tecu_\Desktop\Scholarship-Internship\Teamwork\teamwork\AsociatiaDeTaran
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\AsociatiaDeTarani.csproj.AssemblyReference.cache
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderHistoryForClient.cshtml.g.cs
 E:\Programare\TalentingSoftware\Scholarship\Exercices\ExercicesTeamWork\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Product\New.cshtml.g.cs
+C:\Users\Andrew\Documents\GitHub\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Order\OrderHistoryForClient.cshtml.g.cs
+C:\Users\Andrew\Documents\GitHub\teamwork\AsociatiaDeTarani\AsociatiaDeTarani\obj\Debug\net5.0\Razor\Views\Product\New.cshtml.g.cs

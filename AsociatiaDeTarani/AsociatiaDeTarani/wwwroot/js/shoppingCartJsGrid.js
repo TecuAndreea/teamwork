@@ -75,7 +75,62 @@
                     args.grid._content.append($totalRow);
                 },
 
-                onItemDeleted, onItemUpdated: function (args) {
+
+                onItemUpdated: function (args) {
+
+                    var total = { "product": { "name": "Total" }, "amount": "", "price": 0, "IsTotal": true };
+
+                    $("#shoppingCartGrid").find("tbody tr").filter(".total-row").remove();
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/shoppingCartItems/total",
+                        async: false,
+                        success: function (data) {
+                            total.price = data;
+                        }
+                    });
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/shoppingCartItems/validOrder",
+                        async: false,
+                        success: function (data) {
+                            if (data == true) {
+                                $("#validForOrder").hide();
+                                $("#orderButton").show();
+                            }
+                            else {
+                                $("#orderButton").hide();
+                                $("#validForOrder").show();
+                            }
+                        }
+                    });
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/shoppingCartItems/deliveryPerProducer",
+                        async: false,
+                        success: function (data) {
+
+                            for (var item of data) {
+                                var totalDelivery = { "product": { "name": "Transport: " + item.name }, "amount": "", "price": item.deliveryCost, "IsTotal": true };
+                                var $totalDeliveryRow = $("<tr>").addClass("total-row");
+
+                                args.grid._renderCells($totalDeliveryRow, totalDelivery);
+                                args.grid._content.append($totalDeliveryRow);
+                            }
+                        }
+                    });
+
+                    var $totalRow = $("<tr>").addClass("total-row");
+
+                    args.grid._renderCells($totalRow, total);
+
+                    args.grid._content.append($totalRow);
+                },
+
+                onItemDeleted: function (args) {
 
                     var total = { "product": { "name": "Total" }, "amount": "", "price": 0, "IsTotal": true };
 

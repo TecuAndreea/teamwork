@@ -130,6 +130,19 @@ namespace AsociatiaDeTarani.Controllers
             return result;
         }
 
+        [HttpGet]
+        [Route("/orderedProducts/{orderId}")]
+        public IEnumerable<Tuple<string, double>> GetAllOrderedProducts([FromRoute]int orderId)
+        {
+            var result = from orders in _orderProductRepository.GetByCondition(c => c.OrderId == orderId)
+                         join products in _productRepository.GetAll() on orders.ProductId equals products.ProductId
+                         select new Tuple<string, double>
+                         (  products.Name,
+                            orders.Quantity
+                         );
+            return result;
+        }
+
         public IEnumerable<ShoppingCartItem> GetShoppingCartItems()
         {
             var cart = SessionHelper.GetObjectFromJson<List<ShoppingCartItem>>(HttpContext.Session, "cart");
