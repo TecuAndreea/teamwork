@@ -24,7 +24,6 @@ var orderJsGrid = (function () {
                 pageLastText: "Ultima",
 
                 rowClick: function (args) {
-
                     console.log(args)
                     var getData = args.item;
                     var text = [];
@@ -33,12 +32,15 @@ var orderJsGrid = (function () {
                     
                     sessionStorage.setItem("orderId", text);
                     console.log("in order" + sessionStorage.getItem("orderId"));
+
+                    sessionStorage.setItem("rowClicked", true);
+
                     $('#exampleModalCenter').modal("show");
-                    
                 },
 
                 controller: {
                     loadData: function (filter) {
+                        sessionStorage.setItem("rowClicked", false);
                         return $.ajax({
                             type: "GET",
                             url: "/ordersAndClientName",

@@ -1,68 +1,32 @@
 var orderModalGrid = (function () {
 
     function _init() {
-        $("#orderModalGrid").jsGrid({
-            width: "100%",
-            height: "auto",
-
-            heading: true,
-            autoload: true,
-            inserting: false,
-            sorting: true,
-            selecting: true,
-            paging: true,
-            autosearch: true,
-            pageLoading: false,
-            pagerContainer: null,
-            pageIndex: 1,
-            pageSize: 10,
-            pagerFormat: "Pagina: {first} {prev} {pages} {next} {last} {pageIndex} din {pageCount}",
-            pagePrevText: "Inapoi",
-            pageNextText: "Inainte",
-            pageFirstText: "Prima",
-            pageLastText: "Ultima",
-
-            controller: {
-                loadData: function (filter) {
-                    var vaaar = sessionStorage.getItem("orderId");
-                    console.log("in modal" + vaaar);
-                    return $.ajax({
-                        type: "GET",
-                        url: "/orderedProducts/" + vaaar,
-                        data: filter,
-                        dataType: "json"
-                    });
-                },
-            },
-
-            fields: [
-                {
-                    name: "item1",
-                    width: 50,
-                    title: "Nume Produs",
-                    itemTemplate: function (value, item) {
-                        return "<div>" + value + "</div>"
+        $(document).on('click', function (e) {
+            if (sessionStorage.getItem("rowClicked") == "true") {
+                $.ajax({
+                    type: "GET",
+                    url: "/orderedProducts/" + sessionStorage.getItem("orderId"),
+                    dataType: "json",
+                    success: function (data) {
+                        $("#orderedProductsTable").find("tbody tr").filter(".products").remove();
+                        for (var item of data) {
+                            var row = "<tr class='products'><td>" + item.item1 + "</td><td>" + item.item2 + "</td></tr>";
+                            $("#orderedProductsTable").append(row);
+                        }
                     }
-                },
-                {
-                    name: "item2",
-                    width: 50,
-                    title: "Cantitate",
-                    itemTemplate: function (value, item) {
-                        return "<div>" + value + "</div>"
-                    }
-                }
-            ]
+                });
+            }
+        });
 
+        $("#closeButton").on('click', function () {
+            sessionStorage.setItem("rowClicked", false);
         });
     }
-
 
     return {
         init: _init
     };
 
 })();
+
 orderModalGrid.init();
-
-

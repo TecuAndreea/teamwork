@@ -8,7 +8,7 @@
 <div id="orderJsGrid" style="margin-top: 4em"></div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -18,12 +18,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div id="orderModalGrid">
-
-                </div>
+                <table id="orderedProductsTable" class="table table-bordered">
+                    <tr>
+                        <th scope="col">Produs</th>
+                        <th scope="col">Cantitate</th>
+                    </tr>
+                </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Inchide</button>
+                <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Inchide</button>
             </div>
         </div>
     </div>
