@@ -11,7 +11,7 @@ var orderModalGrid = (function () {
                         $("#orderedProductsTable").find("tbody tr").filter(".products").remove();
                         for (var item of data) {
                             var row = "<tr class='products'><td>" + item.item1 + "</td><td>" + item.item2 + "</td></tr>";
-                            $("#orderedProductsTable").append(row);
+                            $("#orderedProductsTable > tbody").append(row);
                         }
                     }
                 });

@@ -57,6 +57,16 @@ namespace AsociatiaDeTarani.Controllers
         [HttpPost]
         public ActionResult OrderForm(OrderDetailsViewModel modelee)
         {
+            List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
+            var cart = GetShoppingCartItems();
+
+            OrderDetailsViewModel modele = new OrderDetailsViewModel();
+
+            var total = cart.Select(x => x.Price).Sum();
+            modele.TotalPrice = total;
+            var totalTransport = producersItemsCount.Select(x => x.Producer.DeliveryCost).Sum();
+            modele.TotalPrice += totalTransport;
+            ViewBag.total = modele.TotalPrice;
 
             if (ModelState.IsValid)
             {
@@ -76,24 +86,12 @@ namespace AsociatiaDeTarani.Controllers
                     client.PhoneNumber = modelee.PhoneNumber;
                     _clientRepository.Insert(client);
                     order.ClientId = client.ClientId;
-
                 }
 
-
                 order.PlacementDate = DateTime.Now;
-                List<ProducerShoppingCartItemCount> producersItemsCount = SessionHelper.GetObjectFromJson<List<ProducerShoppingCartItemCount>>(HttpContext.Session, "producersItemsCount");
-                var cart = GetShoppingCartItems();
-
-
-
-                var total = cart.Select(x => x.Price).Sum();
-                order.TotalPrice = total;
-                var totalTransport = producersItemsCount.Select(x => x.Producer.DeliveryCost).Sum();
-                order.TotalPrice += totalTransport;
+                order.TotalPrice = total + totalTransport;
 
                 _orderRepository.Insert(order);
-
-                ViewData["total"] = order.TotalPrice;
 
                 foreach (var item in cart)
                 {
